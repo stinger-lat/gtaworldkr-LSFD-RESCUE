@@ -183,14 +183,6 @@
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 pt-6 relative z-30">
-        <div class="relative">
-            <input type="text" id="search-input" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl py-3 px-12 text-sm focus:outline-none focus:border-lafd-red dark:focus:border-red-500 transition-colors shadow-sm text-slate-800 dark:text-slate-200" placeholder="구조 장비, 대응 기법 등 매뉴얼 검색...">
-            <span class="absolute left-4 top-3 text-slate-400">🔍</span>
-        </div>
-        <div id="search-results-container" class="hidden mt-6 space-y-4"></div>
-    </div>
-
     <main class="flex-1 w-full max-w-7xl mx-auto p-6 md:p-10 relative z-0">
             <section id="section-home" class="tab-content space-y-8">
                 <div class="bg-gradient-to-r from-lafd-navy to-[#1a365d] dark:from-[#1e1b4b] dark:to-[#020617] p-8 rounded-3xl border border-slate-300 dark:border-slate-800 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
@@ -1045,69 +1037,6 @@
         });
 
         document.getElementById("generateFireBtn").addEventListener("click", () => {
-        const searchInput = document.getElementById('search-input');
-        const searchResultsContainer = document.getElementById('search-results-container');
-        const mainContent = document.querySelector('main');
-
-        searchInput.addEventListener('input', async (e) => {
-            const query = e.target.value.trim().toLowerCase();
-            
-            // 검색어가 비어있으면 검색 결과창을 숨기고 원본 메인 화면 복구
-            if (!query) {
-                searchResultsContainer.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-                return;
-            }
-
-            // ManualManager를 통해 JSON 데이터를 가져옴
-            const data = await ManualManager.fetchData();
-            if (!data) return;
-
-            let resultsHtml = '';
-            let matchCount = 0;
-
-            // JSON 데이터 전체를 순회하며 검색어 매칭
-            for (const [tabId, items] of Object.entries(data)) {
-                items.forEach(item => {
-                    // 순수 텍스트만 추출 (HTML 태그 클래스명 등이 검색되는 것 방지)
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = item.content;
-                    const plainText = tempDiv.textContent || tempDiv.innerText || "";
-                    
-                    // 제목이나 내용에 검색어가 포함되어 있는지 확인
-                    if (item.title.toLowerCase().includes(query) || plainText.toLowerCase().includes(query)) {
-                        matchCount++;
-                        // 검색된 항목은 직관적으로 보이도록 open 속성을 추가해 펼쳐진 상태로 렌더링
-                        resultsHtml += `
-                            <details class="group bg-white dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-lg mb-4" open>
-                                <summary class="flex justify-between items-center font-bold list-none p-6 text-slate-800 dark:text-slate-300 text-base">
-                                    <span class="text-lg text-lafd-red dark:text-red-500">🔹 ${item.title}</span>
-                                </summary>
-                                <div class="text-slate-600 dark:text-slate-400 text-base mt-2 leading-loose px-6 pb-6 space-y-6 border-t border-slate-100 dark:border-slate-800/50 pt-5">
-                                    ${item.content}
-                                </div>
-                            </details>
-                        `;
-                    }
-                });
-            }
-
-            // 매칭된 결과가 없을 경우의 UI
-            if (matchCount === 0) {
-                resultsHtml = `
-                    <div class="bg-white dark:bg-slate-900/60 p-10 rounded-3xl border border-slate-200 dark:border-slate-800 text-center shadow-sm">
-                        <p class="text-slate-500 dark:text-slate-400 font-bold text-lg">🔍 '${e.target.value}'에 대한 검색 결과가 없습니다.</p>
-                        <p class="text-sm text-slate-400 mt-2">검색어를 바르게 입력했는지 확인해 주세요.</p>
-                    </div>`;
-            }
-
-            // 검색 결과 컨테이너에 HTML 삽입
-            searchResultsContainer.innerHTML = `<h2 class="text-xl font-black text-slate-800 dark:text-white mb-4 pl-2">검색 결과 (${matchCount}건)</h2>` + resultsHtml;
-            
-            // 기존 메인 탭 컨텐츠를 숨기고 검색 결과창을 표시
-            mainContent.classList.add('hidden');
-            searchResultsContainer.classList.remove('hidden');
-        });
             if (!validateForm('fire-form')) {
                 showToast('모든 항목을 입력해주세요. (빈칸은 N/A 입력)', 'error');
                 return;
