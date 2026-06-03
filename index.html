@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSFD USAR - 구조 전문 매뉴얼</title>
+    <link rel="icon" href="images/favicon.ico" type="image/jpeg">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/jpeg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        lafd: {
+                            navy: '#011e41',   
+                            red: '#e31837',    
+                            gold: '#f3b22b',   
+                            light: '#f4f6f9'   
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    
+    <style type="text/tailwindcss">
+        @layer components {
+            .btn-primary {
+                @apply px-8 py-3 bg-lafd-red hover:bg-red-700 text-white font-bold rounded-2xl text-sm transition-all shadow-lg transform hover:-translate-y-1;
+            }
+            .btn-secondary {
+                @apply px-6 py-3 border border-slate-300 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all shadow-sm;
+            }
+            .main-tab {
+                @apply whitespace-nowrap px-5 py-3 rounded-2xl font-bold text-sm transition-all duration-300 border border-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-800 dark:hover:text-white;
+            }
+            .main-tab.active {
+                @apply bg-lafd-navy text-white shadow-md border-lafd-navy dark:bg-white dark:text-slate-900 dark:border-white;
+            }
+            .sub-tab {
+                @apply whitespace-nowrap px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-800 dark:hover:text-white;
+            }
+            .sub-tab.active {
+                @apply bg-lafd-red text-white shadow-sm dark:bg-red-600;
+            }
+        }
+    </style>
+
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #991b1b; }
+
+        .form-section { border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px; }
+        .dark .form-section { border-top-color: #1e293b; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .form-grid-small { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%; border-radius: 0.75rem; border: 1px solid #cbd5e1; background: #ffffff; color: #1e293b;
+            padding: 12px 16px; font-size: 15px; outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .dark .form-input, .dark .form-select, .dark .form-textarea {
+            border-color: #334155; background: #0f172a; color: #f8fafc; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #e31837; box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.15), inset 0 2px 4px rgba(0,0,0,0.02); background: #ffffff;
+        }
+        .dark .form-input:focus, .dark .form-select:focus, .dark .form-textarea:focus {
+            border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2), inset 0 2px 4px rgba(0,0,0,0.1); background: #1e293b;
+        }
+        .form-textarea { min-height: 100px; resize: vertical; }
+
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            50% { transform: translateX(4px); }
+            75% { transform: translateX(-4px); }
+        }
+        .input-error { animation: shake 0.4s ease-in-out; border-color: #ef4444 !important; box-shadow: 0 0 8px rgba(239, 68, 68, 0.3) !important; }
+
+        .toggle-checkbox:checked { right: 0; border-color: #10b981; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #10b981; }
+        
+        .tab-content { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <script>
+        !function(){document.addEventListener("contextmenu",(e=>e.preventDefault())),document.addEventListener("keydown",(e=>{123===e.keyCode||e.ctrlKey&&e.shiftKey&&(73===e.keyCode||74===e.keyCode||67===e.keyCode)||e.ctrlKey&&85===e.keyCode?e.preventDefault():null}))}();
+    </script>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-[#020617] dark:text-slate-200 transition-colors duration-300">
+
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <div class="bg-lafd-navy text-center py-2 shrink-0 shadow-sm transition-colors duration-300 z-50 relative">
+        <p class="text-xs text-white/80 font-bold tracking-widest uppercase">본 시스템은 현장 작전 효율성을 위해 제작되었습니다. 최신 현장대응기법 표준 운영 절차를 숙지하십시오. <span class="text-lafd-gold">최종갱신일:2026. 6. 3.</span></p>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-[#090d16]/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-lafd-red dark:bg-red-800 rounded-xl border border-red-500/50 flex items-center justify-center overflow-hidden shadow-lg shadow-red-900/40">
+                    <img src="images/favicon.ico" alt="LSFD Logo" onerror="this.style.display='none'">
+                    <span class="text-sm font-black text-lafd-gold dark:text-amber-400 tracking-tighter" style="display: none;">USAR</span>
+                </div>
+                <div>
+                    <h1 class="font-black text-xs tracking-widest text-slate-500 dark:text-slate-400 uppercase">GTAW-KR LSFD</h1>
+                    <p class="text-lg text-lafd-navy dark:text-white font-black tracking-tight truncate">구조 대응기법 교본</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-900/60 px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400 hidden sm:block">Light</span>
+                <div class="relative inline-block w-12 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="theme-toggle" aria-label="테마 변경 토글" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-transform duration-300 ease-in-out z-10 top-0 left-0 dark:translate-x-6 border-slate-300 dark:border-slate-600"/>
+                    <label for="theme-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer dark:bg-slate-600 transition-colors duration-300"></label>
+                </div>
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400 hidden sm:block">Dark</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 pb-2">
+            <nav class="flex gap-2 overflow-x-auto no-scrollbar py-2" aria-label="메인 챕터">
+                <button data-main-target="home" class="main-tab active"><span class="mr-1">★</span> 홈</button>
+                <button data-main-target="equip" class="main-tab"><span class="mr-1">🧰</span> 구조장비 조작법</button>
+                <button data-main-target="tech" class="main-tab"><span class="mr-1">🚒</span> 현장대응기법</button>
+                <button data-main-target="search" class="main-tab"><span class="mr-1">🔍</span> 인명검색 및 구조</button>
+                <button data-main-target="fire" class="main-tab"><span class="mr-1">🛡️</span> 생활안전대응</button>
+                <button data-main-target="civ" class="main-tab"><span class="mr-1">📝</span> 보고서 작성</button>
+            </nav>
+        </div>
+
+        <div id="sub-nav-container" class="border-t border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/50 hidden">
+            <div class="max-w-7xl mx-auto px-4">
+                <nav id="sub-nav-equip" class="sub-nav-group hidden flex gap-2 overflow-x-auto no-scrollbar py-3">
+                    <button data-tab="equip-note" class="sub-tab">유의사항</button>				
+                    <button data-tab="equip-main" class="sub-tab">각종 장비 조작법</button>
+                </nav>
+                <nav id="sub-nav-tech" class="sub-nav-group hidden flex gap-2 overflow-x-auto no-scrollbar py-3">
+                    <button data-tab="tech-equip" class="sub-tab">인명구조 장비 가이드</button>
+                    <button data-tab="tech-accident" class="sub-tab">교통사고시 대응요령</button>
+                    <button data-tab="tech-rescue" class="sub-tab">차량 내 구조대상자</button>
+                    <button data-tab="tech-fall" class="sub-tab">추락사고</button>
+                </nav>
+                <nav id="sub-nav-search" class="sub-nav-group hidden flex gap-2 overflow-x-auto no-scrollbar py-3">
+                    <button data-tab="search-knot" class="sub-tab">결착 및 결합</button>
+                    <button data-tab="search-firesar" class="sub-tab">화재현장 검색 및 구조</button>
+                    <button data-tab="search-plane" class="sub-tab">항공기 사고시</button>
+                    <button data-tab="search-heli" class="sub-tab">회전익항공기 활용</button>
+                    <button data-tab="search-dog" class="sub-tab">인명구조견 활용</button>
+                </nav>
+                <nav id="sub-nav-fire" class="sub-nav-group hidden flex gap-2 overflow-x-auto no-scrollbar py-3">
+                    <button data-tab="fire-caution" class="sub-tab">개론</button>	
+                    <button data-tab="fire-interior" class="sub-tab">출입문 강제개방</button>
+                    <button data-tab="fire-hazmat" class="sub-tab">생활위험제거</button>
+                </nav>
+                <nav id="sub-nav-civ" class="sub-nav-group hidden flex gap-2 overflow-x-auto no-scrollbar py-3">
+                    <button data-tab="civ-report" class="sub-tab">출동보고서-구급</button>
+                    <button data-tab="civ-ask" class="sub-tab">출동보고서-화재</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 pt-6 relative z-30">
+        <div class="relative">
+            <input type="text" id="search-input" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl py-3 px-12 text-sm focus:outline-none focus:border-lafd-red dark:focus:border-red-500 transition-colors shadow-sm text-slate-800 dark:text-slate-200" placeholder="구조 장비, 대응 기법 등 매뉴얼 검색...">
+            <span class="absolute left-4 top-3 text-slate-400">🔍</span>
+        </div>
+        <div id="search-results-container" class="hidden mt-6 space-y-4"></div>
+    </div>
+
+    <main class="flex-1 w-full max-w-7xl mx-auto p-6 md:p-10 relative z-0">
+            <section id="section-home" class="tab-content space-y-8">
+                <div class="bg-gradient-to-r from-lafd-navy to-[#1a365d] dark:from-[#1e1b4b] dark:to-[#020617] p-8 rounded-3xl border border-slate-300 dark:border-slate-800 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-red-500/20 text-red-200 border border-red-500/50 text-xs px-3 py-1 rounded-lg font-black uppercase tracking-wider font-mono animate-pulse">● LIVE DISPATCH STREAM</span>
+                        </div>
+                        <h2 class="text-2xl font-black text-white dark:text-amber-400 tracking-wider flex items-center gap-2"><span class="text-lafd-gold">★</span> LSFD RESUCE Standard Operating Procedure</h2>
+                        <p class="text-slate-300 dark:text-slate-400 text-sm leading-loose">"로스 산토스 소방국 기본 구조 대응기법 섹션입니다. 상단의 챕터를 선택하여 매뉴얼을 열람하거나, 아래 항목을 선택하여 외부 링크 및 보고서 작성 화면으로 이동하십시오."</p>
+                    </div>
+                    <div class="shrink-0 text-sm bg-lafd-red dark:bg-red-700 text-white font-bold px-5 py-3 rounded-2xl shadow-lg tracking-wider text-center uppercase border border-red-500/50">"When You Need Us Most."</div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="https://pebble-mimosa-4b1.notion.site/Los-Santos-Fire-Department-3414b11d3f7180719deccf44817b3497" target="_blank" class="block bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-lafd-red dark:hover:border-red-600 p-8 rounded-3xl transition-all duration-300 ease-out group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-xs text-lafd-gold dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 px-3 py-1.5 rounded-lg font-black uppercase tracking-wider">데이터베이스 01</span>
+                            <span class="text-slate-400 group-hover:text-lafd-red dark:group-hover:text-red-400 text-sm transition-all tracking-widest font-bold">LINK ↗</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-800 dark:text-white group-hover:text-lafd-red dark:group-hover:text-red-400 transition-colors">LSFD 통합 가이드북</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-loose">"LSFD 대원용 행동 수칙, 핵심 가이드북, 그리고 전술 훈련 지침 정보."</p>
+                    </a>
+                    <a href="https://docs.google.com/spreadsheets/d/1Kchf9vsvXAeC87_i59hLMRqa329eS5W6Ql3pSJUlziA/edit?gid=1963421204#gid=1963421204" target="_blank" class="block bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-lafd-red dark:hover:border-red-600 p-8 rounded-3xl transition-all duration-300 ease-out group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-xs text-lafd-gold dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 px-3 py-1.5 rounded-lg font-black uppercase tracking-wider">데이터베이스 02</span>
+                            <span class="text-slate-400 group-hover:text-lafd-red dark:group-hover:text-red-400 text-sm transition-all tracking-widest font-bold">LINK ↗</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-800 dark:text-white group-hover:text-lafd-red dark:group-hover:text-red-400 transition-colors">LSFD 조직도</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-loose">"소방국 소속 대원 명부, 실시간 유닛별 콜사인 지정 및 부서별 편성 관리 데이터 시트 연동."</p>
+                    </a>
+                    <a href="https://docs.google.com/document/d/1hwIHVREpce_HTYwtyib27xZlPkqcH8Gy5lzU7erxuSI/edit?usp=sharing" target="_blank" class="block bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-lafd-red dark:hover:border-red-600 p-8 rounded-3xl transition-all duration-300 ease-out group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-xs text-lafd-gold dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 px-3 py-1.5 rounded-lg font-black uppercase tracking-wider">데이터베이스 03</span>
+                            <span class="text-slate-400 group-hover:text-lafd-red dark:group-hover:text-red-400 text-sm transition-all tracking-widest font-bold">LINK ↗</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-800 dark:text-white group-hover:text-lafd-red dark:group-hover:text-red-400 transition-colors">구급대원 현장메뉴얼</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-loose">"소방국 공식 구급대원 현장 메뉴얼 바로가기." by. Hailey Drew</p>
+                    </a>
+                    <a href="https://cad-kr.gta.world/login" target="_blank" class="block bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-lafd-red dark:hover:border-red-600 p-8 rounded-3xl transition-all duration-300 ease-out group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-xs text-lafd-gold dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 px-3 py-1.5 rounded-lg font-black uppercase tracking-wider">데이터베이스 04</span>
+                            <span class="text-slate-400 group-hover:text-lafd-red dark:group-hover:text-red-400 text-sm transition-all tracking-widest font-bold">LINK ↗</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-800 dark:text-white group-hover:text-lafd-red dark:group-hover:text-red-400 transition-colors">Computer Aided Dispatch</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-loose">FCAD 브라우저 접속</p>
+                    </a>
+                    <button data-main-target="civ" data-trigger-tab="civ-report" class="w-full text-left block bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-lafd-red dark:hover:border-red-600 p-8 rounded-3xl transition-all duration-300 ease-out group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-xs text-lafd-red dark:text-red-400 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 px-3 py-1.5 rounded-lg font-black uppercase tracking-wider">내부시스템 05</span>
+                            <span class="text-slate-400 group-hover:text-lafd-red dark:group-hover:text-red-400 text-sm transition-all tracking-widest font-bold">SYSTEM ➔</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-800 dark:text-white group-hover:text-lafd-red dark:group-hover:text-red-400 transition-colors">구급출동 보고서 작성</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-loose">"구급출동 보고서 생성기 시스템."</p>
+                    </button>
+                    <button data-main-target="civ" data-trigger-tab="civ-ask" class="w-full text-left block bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-lafd-red dark:hover:border-red-600 p-8 rounded-3xl transition-all duration-300 ease-out group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-xs text-lafd-red dark:text-red-400 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 px-3 py-1.5 rounded-lg font-black uppercase tracking-wider">내부시스템 06</span>
+                            <span class="text-slate-400 group-hover:text-lafd-red dark:group-hover:text-red-400 text-sm transition-all tracking-widest font-bold">SYSTEM ➔</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-800 dark:text-white group-hover:text-lafd-red dark:group-hover:text-red-400 transition-colors">화재출동 보고서 작성</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-loose">"화재출동 보고서 생성기 시스템."</p>
+                    </button>
+                </div>
+            </section>
+			
+            <section id="section-equip-note" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🗒 유의사항</h2>
+                <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                    <div class="text-slate-600 dark:text-slate-400 text-base mt-2 leading-loose px-6 pb-6 space-y-6 border-t border-slate-100 dark:border-slate-800/50 pt-5">
+                        <div>
+                            <p class="font-bold text-lafd-gold dark:text-amber-500 text-lg mb-3">작업 전의 준비</p>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>옷깃이나 벨트 등이 기계의 동작 부분에 말려 들어갈 수 있으므로 주의한다. 특히 체인톱이나, 헤머드릴 등 고속 회전부분이 있는 장비의 경우 실밥이 말려들어갈 수 있으므로 면장갑은 착용하지 않는다.</li>
+                                <li>고압전류를 사용하는 전동 장비나 고온이 발생하는 용접기 등의 경우에는 반드시 전술장갑을 착용해야 한다.</li>
+                                <li>반지나 시계, 목걸이 등 장신구는 안전사고를 유발할 수 있고 부상을 악화시킬 수 있으므로 착용을 금지한다.</li>
+                                <li>분진이나 작은 파편이 발생하는 작업을 수행할 때에는 보호안경을 착용한다. 헬멧(또는 방수모)의 보호렌즈만으로는 충분한 보호가 어렵다.</li>
+                                <li>작업반경 내에는 장비조작에 관여하지 않는 대원과 일반인의 접근을 통제한다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-equip-main" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🧰 각종 장비 조작법</h2>
+                <div id="manual-container-equip-main"></div>
+            </section>
+
+            <section id="section-tech-equip" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🛠️ 인명구조 장비 가이드</h2>
+                <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <p class="font-bold text-lafd-red dark:text-red-400 text-lg mb-2">1. 유압식 고성능 센터펀 전술</p>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            (1)  <strong>비산 방지 조치:</strong> 강화유리 파쇄 시 비산 파편으로 인한 요구조자 및 대원의 2차 부상을 전면 억제하기 위해 점착용 스프레이 또는 X자형 보호 점착 테이프를 전면에 밀착 고정한다.<br>
+                            (2) <strong>센터펀치 타격 위치 및 방법:</strong> 센터펀치 작동 장치를 유리 최하단 가장자리 코너(Corner) 구석에 직각으로 대고 강하게 누른 후 중앙 타격 시 파쇄 압력이 반사되어 실패 확률이 늘어나므로 반드시 코너를 공략한다.<br>
+                            (3) <strong>안전한 유리 제거:</strong> 파쇄 유리는 구조용 블랭킷을 이용해 차외 방향으로 안전하게 제거한다.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-lafd-red dark:text-red-400 text-lg mb-2">2. 차량 인명구조용 유리절단기 운용 전술</p>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2 leading-loose pl-4 border-l-4 border-slate-200 dark:border-slate-700">
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">차량 전면 유리창 전용 파쇄 장비</span>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            (1)  <strong>파지법:</strong> 소방 도끼의 후면 피크(Peak)를 이용해 윈드실드 상단 가장자리에 날이 진입할 수 있는 최소한의 가이드 홀을 천공합니다.<br>
+                            (2) <strong>절단방법:</strong>  절단기 톱날을 하향 각도로 삽입한 후 피스톤 마찰 기법으로 스트로크를 주어 하단으로 수직 절단한다.<br>
+                            (3) <strong>안전한 구조방법:</strong> 내부 구조대상자의 안면 보호를 위해 구조용 투명 실드를 내부에 전개해 두는 것을 권장한다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-tech-accident" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🚒 교통사고시 대응요령</h2>
+                <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                    <div>
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">현장대응절차</span>
+                        <ol class="list-decimal pl-6 space-y-3 text-slate-600 dark:text-slate-400 leading-loose">
+                            <li>구조차, 펌프차, 구급차 동시 출동 확인</li>
+                            <li>현장활동대원들이 2차 사고로부터 보호받을 수 있도록 속도제한에 비례한 거리의 후방지점에(예 제한속도 60마일 → 6m) 차량 및 안전요원을 배치하고 교통통제 실시</li>
+                            <li>선착대 상황 전파</li>
+                            <li>현장도착 경찰관에게 현장 접근통제 및 교통통제 처리요청</li>
+                            <li>연료 누출여부와 관계없이 차량 화재대비 경계관창 유지</li>
+                            <li>사고차량에 대한 차량식별(하이브리드, 전기, 수소 등) 및 안전조치(고임목, 로프 고정 등)</li>
+                        </ol>
+                    </div>
+                </div>
+                <div id="manual-container-tech-accident"></div>
+            </section>
+            
+            <section id="section-search-dog" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🐕 인명구조견 활용</h2>
+                <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-500 p-5 rounded-xl text-blue-800 dark:text-blue-200 shadow-sm mt-4">
+                    💡 붕괴현장이나 산악 등에서 실종된 구조대상자를 수색할 때에 인명구조견을 활용할 수 있다. 로스산토스 소방국 도심수색및구조팀 산하 인명구조견은 수색구조견(산악, 재해 등), 수상구조견으로 구분된다.
+                </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-center py-10 font-bold">인명 구조 활동의 행동 지침서 역할을 하는 UN의 '국제 수색 구조 가이드 라인'에는 인명구조견이나 핸들러가 인명 구조 활동 중 부상을 당했을 경우 구조를 요하는 사람들 보다 최우선적으로 이들을 먼저 치료, 처치하게 되어있다. 또한 구조 활동에서 수색 초기에 인명구조견을 진입시키도록 되어있다.</p>
+                    <div>
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">1) 구조견의 활용범위</span>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>산악지역 조난자의 구조</li>
+                                <li>수중 구조</li>
+                                <li>매몰자 구조</li>
+                                <li>냄새 추적으로 사람의 위치 파악</li>
+                            </ul><br>
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">2) 구조견 활용시 고려할 사항</span>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>신속한 구조출동: 실종자의 생존 가능성이 높아짐</li>
+                                <li>정확한 제보: 없는 실종자를 구조견이 찾을 수는 없음</li>
+                                <li>현장 우선투입: 구조대원이 수색한 지역을 구조견이 뒤이어 수색하게 되면 구조대원의 냄새가 지면이나 공중에 남아 유혹취로 작용되어 실종자 수색이 불리해짐</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-search-knot" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🔍 결착 및 결합</h2>
+                <div id="manual-container-search-knot"></div>
+            </section>
+			
+            <section id="section-search-firesar" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🛠️ 화재현장 검색 및 구조</h2>
+                <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-500 p-5 rounded-xl text-blue-800 dark:text-blue-200 shadow-sm mt-4">
+                    💡 구조대원들은 구조대상자를 검색하는 동안 항상 자신의 안전을 염두에 두어야 한다. 또한 현장지휘관은 검색과 구조작업에서 대원들이 직면하게 되는 위험성을 늘 염두에 두고 있어야 한다.
+                </div>
+                    <div>
+                        <p class="font-bold text-lafd-red dark:text-red-400 text-lg mb-2">건물 탐색시의 안전</p>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2 leading-loose pl-4 border-l-4 border-slate-200 dark:border-slate-700">
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">1) 안전을 위한 장비</span>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            구조대원들은 화재현장에 투입될 때 될 수 있는 대로 빨리 검색을 개시한다. 구조대원들은 현장에 진입하기 전에 조명기구와 무전기, 파괴도구, 기타 개인보호장비(공기호흡기, 인명구조경보기(/passalarm 등)을 완벽하게 갖추어야 한다.<br><br>
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">2) 문을 개방할 때</span>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            닫힌 문을 열 때에는 특히 조심해야 한다. 내부의 열기를 가늠하기 위해서 문의 맨 위쪽과 손잡이를 점검한다. 만약 문이 뜨겁다면 방수개시 준비가 될 때까지 문을 열어서는 안된다.<br>
+						  문을 열고자 하는 경우에는 문의 정면에 위치하면 안 된다. 한쪽 측면에 서서 몸을 낮추고 천천히 문을 연다.<br><br>
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">3) 갇혔거나 길을 잃은 경우</span>
+                        <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
+                            정신적이나 육체적으로 훌륭한 소방대원이 적절한 장비를 잘 갖추고 있더라도 항상 예외적인 상황이 발생한다. 항상 침착함을 유지해야 하며, 자제력을 잃는 것은 곧 흥분과 공포감으로 공기 소모를 정상치 이상으로 급격하게 상승시킬 수 있다.<br>
+						  또한 다른 대원이 들을 수 있도록 큰 소리로 도움을 요청하고, 구조대원은 벽을 따라서 진입하기 때문에 손전등 빛을 천장에 비추는 방법으로 다른 구조대원들이 발견할 수 있게 한다. <strong>인명구조 경보기(/passalarm)</strong>를 필히 작동시킨다.</br>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-search-plane" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🔍 항공기 사고시</h2>
+                <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-500 p-5 rounded-xl text-blue-800 dark:text-blue-200 shadow-sm mt-4">
+                    💡 추락사고시 화재가 일어날 경우 많은 양의 열과 유독가스가 발생한다. 탑승자의 생존은 소방대가 화염을 얼마나 잡아내느냐에 달려있다. 구조대원, 동체, 노출된 피해자들은 분무주수나 폼 소화약제로 보호하여야 한다.
+                </div>
+                <div id="manual-container-search-plane"></div>
+            </section>
+
+            <section id="section-search-heli" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🔍 회전익항공기 활용</h2>
+                <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-500 p-5 rounded-xl text-blue-800 dark:text-blue-200 shadow-sm mt-4">
+                    💡 <strong>[!]</strong> 회전익항공기 즉 헬기는 저공비행이 가능하고 공중선회.정지비행(hovering)이 가능하여 지상에서 접근하기 곤란한 곳에서 발생하는 긴급구조 상황에서 높은 효용성을 발휘한다. 그러나 때와 장소에 따라서 지상 구조활동에 비해서 단점을 보이는 부분도 있다.<br><br>이러한 예로, 환자이송에 헬기를 사용하면 오히려 부상정도나 아픈 정도가 더 악화되어 악영향을 주는 경우도 있으므로 만약 지상을 통하여 알맞은 시간에 피해지역까지 구급차가 도달할 수 있다면 굳이 헬기를 사용할 필요는 없다.
+                </div>
+                <div id="manual-container-search-heli"></div>
+            </section>
+
+            <section id="section-tech-rescue" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🚙 차량 내 구조대상자 대응기법</h2>
+                <div id="manual-container-tech-rescue"></div>
+            </section>
+
+            <section id="section-tech-fall" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">📉 추락사고 대응기법</h2>
+                <div id="manual-container-tech-fall"></div>
+            </section>
+
+            <section id="section-fire-caution" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🗒 개론</h2>
+                <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
+                    <p class="text-slate-600 dark:text-slate-400 text-center py-10 font-bold">현장대원은 각종 동물의 습성을 이해하고 동물의 위험한 돌발 행동에 대처할 필요가 있다.<br>
+					반려동물이라 하더라도 모든 동물은 위해를 끼칠 수 있으므로 현장 대응하는 대원은 보호장비를 갖추고 포획한 동물은 함부로 다루어서는 아니 되며, 
+					포획과정에서 동물을 학대해서도 아니 된다. 포획할 때에는 포획할 동물이 위협적인지, 병에 걸려 있는지, 겁을 먹고 있는지 등 상태를 파악하고 행동한다.</br>
+				</p>
+                </div>
+            </section>          
+
+            <section id="section-fire-interior" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🛡️ 출입문 강제개방</h2>
+                <div id="manual-container-fire-interior"></div>
+            </section>
+
+            <section id="section-fire-hazmat" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🛡️ 생활위험제거</h2>       
+                <div id="manual-container-fire-hazmat"></div>
+            </section>
+
+            <section id="section-civ-report" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🚨 구급출동 보고서 작성 도우미</h2>
+                
+                <div class="bg-white dark:bg-slate-900/80 p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl transition-all duration-300">
+                    <form id="medical-form" class="space-y-8">
+                        <div class="text-base text-slate-600 dark:text-slate-400 leading-loose border-b border-slate-200 dark:border-slate-800 pb-5">
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">안내사항: GTA World · Fire Department RP용 비공식 도우미 폼입니다.<br>폼 작성 후 생성 버튼을 누르면 클립보드에 자동 복사됩니다.</span>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                1. 출동 정보
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label for="incidentId" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">신고접수</label>
+                                    <input type="text" id="incidentId" name="incidentId" class="form-input" placeholder="예: #2026-0112" />
+                                </div>
+                                <div>
+                                    <label for="unit" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">출동 유닛</label>
+                                    <input type="text" id="unit" name="unit" class="form-input" placeholder="예: RA 51 / E 51" />
+                                </div>
+                                <div>
+                                    <label for="datetime" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">일시</label>
+                                    <input type="text" id="datetime" name="datetime" class="form-input" />
+                                </div>
+                                <div>
+                                    <label for="location" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">현장 위치</label>
+                                    <input type="text" id="location" name="location" class="form-input" placeholder="예: Davis Ave / Innocence Blvd" />
+                                </div>
+                            </div>
+                            <div class="form-grid pt-2">
+                                <div>
+                                    <label for="lead" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">담당 대원 (Lead)</label>
+                                    <input type="text" id="lead" name="lead" class="form-input" placeholder="성명 / Badge" />
+                                </div>
+                                <div>
+                                    <label for="partner" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">파트너</label>
+                                    <input type="text" id="partner" name="partner" class="form-input" placeholder="선택사항" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                2. 환자 기본정보
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label for="patientName" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">이름</label>
+                                    <input type="text" id="patientName" name="patientName" class="form-input" placeholder="Unknown 도 가능" />
+                                </div>
+                                <div>
+                                    <label for="age" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">나이</label>
+                                    <input type="text" id="age" name="age" class="form-input" placeholder="예: 24" />
+                                </div>
+                                <div>
+                                    <label for="sex" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">성별</label>
+                                    <select id="sex" name="sex" class="form-select">
+                                        <option value="">선택</option>
+                                        <option value="M">남</option>
+                                        <option value="F">여</option>
+                                        <option value="Unknown">Unknown</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="conscious" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">의식수준(A/V/P/U)</label>
+                                    <select id="conscious" name="conscious" class="form-select">
+                                        <option value="">선택</option>
+                                        <option value="의식명료">의식명료</option>
+                                        <option value="음성에반응">음성에반응</option>
+                                        <option value="통증에반응">통증에반응</option>
+                                        <option value="무의식">무의식</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                3. 초기 평가
+                            </div>
+                            <div>
+                                <label for="chiefComplaint" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">주호소 (Chief Complaint)</label>
+                                <input type="text" id="chiefComplaint" name="chiefComplaint" class="form-input" placeholder="예: 흉통, 호흡곤란, 화상 등" />
+                            </div>
+                            <div class="form-grid-small pt-2">
+                                <div>
+                                    <label for="bp" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">혈압 (BP)</label>
+                                    <input type="text" id="bp" name="bp" class="form-input" placeholder="예: 120/80" />
+                                </div>
+                                <div>
+                                    <label for="hr" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">맥박 (HR)</label>
+                                    <input type="text" id="hr" name="hr" class="form-input" placeholder="예: 88" />
+                                </div>
+                                <div>
+                                    <label for="rr" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">호흡수 (RR)</label>
+                                    <input type="text" id="rr" name="rr" class="form-input" placeholder="예: 18" />
+                                </div>
+                                <div>
+                                    <label for="spo2" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">SpO₂</label>
+                                    <input type="text" id="spo2" name="spo2" class="form-input" placeholder="예: 98% RA" />
+                                </div>
+                                <div>
+                                    <label for="temp" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">체온 (Temp)</label>
+                                    <input type="text" id="temp" name="temp" class="form-input" placeholder="예: 36.7℃" />
+                                </div>
+                                <div>
+                                    <label for="pain" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">통증 점수 (0–10)</label>
+                                    <input type="text" id="pain" name="pain" class="form-input" placeholder="예: 6/10" />
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <label for="assessment" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">도착 시 상태</label>
+                                <textarea id="assessment" name="assessment" class="form-textarea" placeholder="예: 의식 명료, CC 외 특이소견 없음 / 좌측 전완부 2도 화상 등"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                4. 처치 내용
+                            </div>
+                            <div>
+                                <label for="treatment" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">시행 처치</label>
+                                <textarea id="treatment" name="treatment" class="form-textarea" placeholder="예: ABC 평가, SpO2 모니터링, Ice pack 적용, Burn dressing 적용, 상지 고정 등"></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <label for="meds" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">투약 내역 (있을 경우)</label>
+                                <textarea id="meds" name="meds" class="form-textarea" placeholder="예: PO ASA 325mg, SL Nitro 0.4mg ×1, IV NS KVO 등 / 없으면 N/A"></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <label for="transport" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">이송 여부 / 목적지</label>
+                                <input type="text" id="transport" name="transport" class="form-input" placeholder="예: ALS 이송, Pillbox Hill MC / Refusal 및 자필서명 등" />
+                            </div>
+                            <div class="pt-2">
+                                <label for="outcome" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">최종 상태 / 인계</label>
+                                <textarea id="outcome" name="outcome" class="form-textarea" placeholder="예: 상태 안정, ER 팀에 구두/서면 인계, 현장 정리 후 복귀 등"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-5 border-t border-slate-200 dark:border-slate-800 mt-8">
+                            <button type="button" id="clearBtn" class="btn-secondary">
+                                🧹 전체 초기화
+                            </button>
+                            <button type="button" id="generateBtn" class="btn-primary">
+                                🚨 구급출동 보고서 생성 및 복사
+                            </button>
+                        </div>
+
+                        <div class="relative mt-8">
+                            <div class="flex justify-between items-end mb-3">
+                                <span class="text-base font-bold text-slate-700 dark:text-slate-400">생성된 기록지 로그</span>
+                                <button type="button" data-copy="output" class="flex items-center gap-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white text-sm py-2 px-4 rounded-xl border border-slate-300 dark:border-slate-600 transition-colors shadow-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                    수동 복사
+                                </button>
+                            </div>
+                            <textarea id="output" readonly class="w-full bg-slate-50 dark:bg-[#060a12] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-sm font-mono text-emerald-600 dark:text-emerald-400 h-56 outline-none resize-none shadow-inner" placeholder="[구급출동 보고서가 여기 생성됩니다]"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="section-civ-ask" class="tab-content hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🔥 화재출동 보고서 작성 도우미</h2>
+                
+                <div class="bg-white dark:bg-slate-900/80 p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl transition-all duration-300">
+                    <form id="fire-form" class="space-y-8">
+                        <div class="text-base text-slate-600 dark:text-slate-400 leading-loose border-b border-slate-200 dark:border-slate-800 pb-5">
+                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">안내사항: GTA World · Fire Department RP용 비공식 도우미 폼입니다.<br>폼 작성 후 생성 버튼을 누르면 클립보드에 자동 복사됩니다.</span>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                1. 출동 정보
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label for="incidentId_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">신고접수</label>
+                                    <input type="text" id="incidentId_fire" name="incidentId_fire" class="form-input" placeholder="예: #2026-0112 / 911 신고" />
+                                </div>
+                                <div>
+                                    <label for="unit_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">출동차량</label>
+                                    <input type="text" id="unit_fire" name="unit_fire" class="form-input" placeholder="예: E 51 / T 51 / BC 5" />
+                                </div>
+                                <div>
+                                    <label for="datetime_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">일시</label>
+                                    <input type="text" id="datetime_fire" name="datetime_fire" class="form-input" />
+                                </div>
+                                <div>
+                                    <label for="location_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">장소</label>
+                                    <input type="text" id="location_fire" name="location_fire" class="form-input" placeholder="예: Davis Ave / Innocence Blvd" />
+                                </div>
+                            </div>
+                            <div class="form-grid pt-2">
+                                <div>
+                                    <label for="commander_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">현장 지휘관</label>
+                                    <input type="text" id="commander_fire" name="commander_fire" class="form-input" placeholder="성명 / Badge" />
+                                </div>
+                                <div>
+                                    <label for="crew_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">출동 인원</label>
+                                    <input type="text" id="crew_fire" name="crew_fire" class="form-input" placeholder="예: 성명" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                2. 화재 정보
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label for="fireType_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">화재 유형</label>
+                                    <select id="fireType_fire" name="fireType_fire" class="form-select">
+                                        <option value="">선택</option>
+                                        <option value="구조물 화재">구조물 화재</option>
+                                        <option value="차량 화재">차량 화재</option>
+                                        <option value="쓰레기/야외 화재">쓰레기/야외 화재</option>
+                                        <option value="전기 화재">전기 화재</option>
+                                        <option value="가스/폭발 위험">가스/폭발 위험</option>
+                                        <option value="산림/초목 화재">산림/초목 화재</option>
+                                        <option value="기타">기타</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="buildingType_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">대상물 / 구조</label>
+                                    <input type="text" id="buildingType_fire" name="buildingType_fire" class="form-input" placeholder="예: 2층 상가, 단독주택, 차량 1대" />
+                                </div>
+                                <div>
+                                    <label for="fireLevel_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">화재 규모</label>
+                                    <select id="fireLevel_fire" name="fireLevel_fire" class="form-select">
+                                        <option value="">선택</option>
+                                        <option value="소규모">소규모</option>
+                                        <option value="중규모">중규모</option>
+                                        <option value="대규모">대규모</option>
+                                        <option value="확대 우려">확대 우려</option>
+                                        <option value="진화 완료 상태">진화 완료 상태</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="smokeFlame_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">연기/화염 상태</label>
+                                    <input type="text" id="smokeFlame_fire" name="smokeFlame_fire" class="form-input" placeholder="예: 검은 연기 다량, 1층 창문 화염 확인" />
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <label for="arrivalStatus_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">도착 시 상태</label>
+                                <textarea id="arrivalStatus_fire" name="arrivalStatus_fire" class="form-textarea" placeholder="예: 건물 전면부에서 연기 확인, 시민 다수 대피 중, 내부 요구조자 여부 미상"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                3. 현장 활동
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label for="rescue_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">인명 구조 여부</label>
+                                    <select id="rescue_fire" name="rescue_fire" class="form-select">
+                                        <option value="">선택</option>
+                                        <option value="없음">없음</option>
+                                        <option value="요구조자 확인">요구조자 확인</option>
+                                        <option value="구조 완료">구조 완료</option>
+                                        <option value="수색 결과 요구조자 없음">수색 결과 요구조자 없음</option>
+                                        <option value="확인 불가">확인 불가</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="evacuation_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">대피 조치</label>
+                                    <input type="text" id="evacuation_fire" name="evacuation_fire" class="form-input" placeholder="예: 인근 시민 대피, 건물 출입 통제" />
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <label for="suppression_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">진압 활동</label>
+                                <textarea id="suppression_fire" name="suppression_fire" class="form-textarea" placeholder="예: 외부화재 진압 후 내부 진입"></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <label for="support_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">추가 지원 요청</label>
+                                <input type="text" id="support_fire" name="support_fire" class="form-input" placeholder="예: 추가 엔진 요청 / PD 교통통제 요청 / 없음" />
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                4. 피해 및 결과
+                            </div>
+                            <div class="form-grid-small">
+                                <div>
+                                    <label for="injuries_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">부상자</label>
+                                    <input type="text" id="injuries_fire" name="injuries_fire" class="form-input" placeholder="예: 없음 / 시민 1명 연기흡입" />
+                                </div>
+                                <div>
+                                    <label for="propertyDamage_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">재산 피해</label>
+                                    <input type="text" id="propertyDamage_fire" name="propertyDamage_fire" class="form-input" placeholder="예: 주방 일부 소실 / 차량 전소" />
+                                </div>
+                                <div>
+                                    <label for="cause_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">추정 원인</label>
+                                    <input type="text" id="cause_fire" name="cause_fire" class="form-input" placeholder="예: 전기적 요인 추정 / 조사 필요" />
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <label for="overhaul_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">잔불 정리 / 환기</label>
+                                <textarea id="overhaul_fire" name="overhaul_fire" class="form-textarea" placeholder="예: 잔불 확인 및 정리, 내부 환기 실시, 재발화 위험 없음 확인"></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <label for="handover_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">현장 인계 / 통제</label>
+                                <textarea id="handover_fire" name="handover_fire" class="form-textarea" placeholder="예: 현장 소유자에게 안전사항 안내, 필요 시 화재조사관 인계, PD 통제 해제"></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <label for="outcome_fire" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">결과</label>
+                                <textarea id="outcome_fire" name="outcome_fire" class="form-textarea" placeholder="예: 화재 완전 진압, 현장 안전 확인 후 모든 유닛 복귀"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-5 border-t border-slate-200 dark:border-slate-800 mt-8">
+                            <button type="button" id="clearFireBtn" class="btn-secondary">
+                                🧹 전체 초기화
+                            </button>
+                            <button type="button" id="generateFireBtn" class="btn-primary">
+                                🔥 화재출동 보고서 생성 및 복사
+                            </button>
+                        </div>
+
+                        <div class="relative mt-8">
+                            <div class="flex justify-between items-end mb-3">
+                                <span class="text-base font-bold text-slate-700 dark:text-slate-400">생성된 기록지 로그</span>
+                                <button type="button" data-copy="output_fire" class="flex items-center gap-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white text-sm py-2 px-4 rounded-xl border border-slate-300 dark:border-slate-600 transition-colors shadow-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                    수동 복사
+                                </button>
+                            </div>
+                            <textarea id="output_fire" readonly class="w-full bg-slate-50 dark:bg-[#060a12] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-sm font-mono text-orange-600 dark:text-orange-400 h-56 outline-none resize-none shadow-inner" placeholder="[화재출동 보고서가 여기 생성됩니다]"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+    </main>
+
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#060a12] text-center p-6 shrink-0 transition-colors duration-300">
+        <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">LSFD RESCUE MANUAL SYSTEM v7.5</p>
+        <p class="text-[11px] text-slate-400 mt-1.5">© 2026 LSFD USAR DIVISION.</p>
+    </footer>
+
+    <script>
+    const ManualManager = {
+        fetchedData: null,    // manuals.json에서 불러온 원본 데이터를 보관할 캐시
+        renderedCache: {},    // 이미 렌더링을 끝마친 탭을 기록하여 불필요한 DOM 연산 방지
+        isFetching: false,    // 동시 다발적인 중복 Fetch 요청 방지용 플래그
+
+        // 비동기로 JSON 파일 로드 (최초 1회만 실행됨)
+        async fetchData() {
+            if (this.fetchedData) return this.fetchedData; 
+            if (this.isFetching) return null; 
+
+            this.isFetching = true;
+            try {
+                // 동일한 폴더에 위치한 manuals.json 파일을 읽어옵니다.
+                const response = await fetch('manuals.json');
+                if (!response.ok) throw new Error('네트워크 응답 에러');
+                this.fetchedData = await response.json();
+                return this.fetchedData;
+            } catch (error) {
+                console.error('데이터 로드 실패:', error);
+                showToast('매뉴얼 데이터를 불러오지 못했습니다. 로컬 서버 상태를 확인해주세요.', 'error');
+                return null;
+            } finally {
+                this.isFetching = false;
+            }
+        },
+
+        // 탭이 선택되었을 때 호출되는 렌더링 함수
+        async renderSection(tabId) {
+            // [캐시 히트] 이미 HTML 구조가 완성(렌더링)된 탭이라면 즉시 종료하여 성능 최적화
+            if (this.renderedCache[tabId]) return;
+
+            const container = document.getElementById(`manual-container-${tabId}`);
+            if (!container) return; // 렌더링할 타겟이 없으면 종료
+
+            // 로딩 UI 표시 (선택사항)
+            container.innerHTML = '<p class="text-slate-500 text-sm animate-pulse">데이터를 읽어오는 중입니다...</p>';
+
+            // [캐시 미스] 데이터 확보 및 렌더링
+            const data = await this.fetchData();
+            if (!data || !data[tabId]) {
+                container.innerHTML = '<p class="text-red-500 text-sm">해당 항목의 매뉴얼 데이터가 없습니다.</p>';
+                return;
+            }
+
+            let htmlString = "";
+            data[tabId].forEach(item => {
+                htmlString += `
+                <details class="group bg-white dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer mb-4">
+                    <summary class="flex justify-between items-center font-bold list-none p-6 text-slate-800 dark:text-slate-300 hover:text-lafd-red dark:hover:text-white transition-colors text-base">
+                        <span class="text-lg">🔹 ${item.title}</span>
+                        <span class="transition group-open:rotate-180 text-lafd-gold dark:text-amber-500">▼</span>
+                    </summary>
+                    <div class="text-slate-600 dark:text-slate-400 text-base mt-2 leading-loose px-6 pb-6 space-y-6 border-t border-slate-100 dark:border-slate-800/50 pt-5">
+                        ${item.content}
+                    </div>
+                </details>`;
+            });
+            
+            container.innerHTML = htmlString;
+            this.renderedCache[tabId] = true; // 렌더링 완료 상태로 캐시 업데이트
+        }
+    };
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark') {
+        htmlElement.classList.add('dark');
+        themeToggleBtn.checked = true;
+    } else {
+        htmlElement.classList.remove('dark');
+        themeToggleBtn.checked = false;
+    }
+
+    themeToggleBtn.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            htmlElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        
+        const bgColor = type === 'error' ? 'bg-red-700' : 'bg-emerald-600';
+        const icon = type === 'error' ? '⚠️' : '✅';
+        
+        toast.className = `${bgColor} text-white px-5 py-3.5 rounded-2xl shadow-xl transform transition-all duration-300 translate-y-10 opacity-0 text-sm font-bold flex items-center gap-3 border border-white/10`;
+        toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+        
+        container.appendChild(toast);
+        
+        requestAnimationFrame(() => {
+            toast.classList.remove('translate-y-10', 'opacity-0');
+        });
+        
+        setTimeout(() => {
+            toast.classList.add('translate-y-10', 'opacity-0');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    const subNavContainer = document.getElementById('sub-nav-container');
+    
+    function switchMainTab(targetId) {
+        document.querySelectorAll('.main-tab').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.querySelector(`.main-tab[data-main-target="${targetId}"]`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        document.querySelectorAll('.sub-nav-group').forEach(nav => nav.classList.add('hidden'));
+        
+        const targetSubNav = document.getElementById(`sub-nav-${targetId}`);
+        
+        if (targetId === 'home') {
+            subNavContainer.classList.add('hidden');
+            switchContentTab('home'); 
+        } else if (targetSubNav) {
+            subNavContainer.classList.remove('hidden');
+            targetSubNav.classList.remove('hidden');
+            
+            const firstSubTab = targetSubNav.querySelector('.sub-tab');
+            if (firstSubTab) {
+                firstSubTab.click();
+            }
+        }
+    }
+
+    // 변경된 switchContentTab (동기에서 비동기 캐싱 호출로 변경)
+    function switchContentTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        
+        const target = document.getElementById(`section-${tabId}`);
+        if(target) target.classList.remove('hidden');
+
+        document.querySelectorAll('.sub-tab').forEach(btn => btn.classList.remove('active'));
+        
+        const activeBtn = document.querySelector(`.sub-tab[data-tab="${tabId}"]`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        // 매뉴얼 매니저를 통한 스마트 탭 전환 처리 (fetch & 캐싱 렌더링 호출)
+        ManualManager.renderSection(tabId);
+    }
+
+    // 통합 이벤트 위임 처리 (기존 구조 완벽 유지)
+    document.body.addEventListener('click', (e) => {
+        const mainTabBtn = e.target.closest('.main-tab');
+        if (mainTabBtn) {
+            switchMainTab(mainTabBtn.dataset.mainTarget);
+        }
+
+        const subTabBtn = e.target.closest('.sub-tab');
+        if (subTabBtn) {
+            switchContentTab(subTabBtn.dataset.tab);
+        }
+
+        const dashboardTrigger = e.target.closest('[data-trigger-tab]');
+        if(dashboardTrigger) {
+            const mainTarget = dashboardTrigger.dataset.mainTarget;
+            const tabTarget = dashboardTrigger.dataset.triggerTab;
+            switchMainTab(mainTarget);
+            switchContentTab(tabTarget);
+        }
+
+        const copyBtn = e.target.closest('[data-copy]');
+        if (copyBtn) {
+            copyTextToClipboard(copyBtn.dataset.copy, false);
+        }
+    });
+
+    function copyTextToClipboard(elementId, isAuto = false) {
+        const textToCopy = document.getElementById(elementId).value;
+        if(!textToCopy) {
+            showToast("복사할 내용이 없습니다. 먼저 서식을 생성해주세요.", "error");
+            return;
+        }
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            if(isAuto) {
+                showToast('보고서가 생성되고 클립보드에 자동 복사되었습니다.');
+            } else {
+                showToast('보고서 내용이 클립보드에 수동 복사되었습니다.');
+            }
+        }).catch(err => {
+            console.error('복사 실패:', err);
+            showToast('브라우저 권한 문제로 복사에 실패했습니다.', "error");
+        });
+    }
+
+    function setCurrentDateTimeMedical() {
+        const now = new Date();
+        const localISOTime = new Date(now.getTimezoneOffset() * -60000 + now.getTime()).toISOString();
+        const formatted = localISOTime.slice(0, 10) + ' ' + localISOTime.slice(11, 16);
+        const el = document.getElementById("datetime");
+        if(el) el.value = formatted;
+    }
+
+    function setCurrentDateTimeFire() {
+        const now = new Date();
+        const localISOTime = new Date(now.getTimezoneOffset() * -60000 + now.getTime()).toISOString();
+        const formatted = localISOTime.slice(0, 10) + ' ' + localISOTime.slice(11, 16);
+        const el = document.getElementById("datetime_fire");
+        if(el) el.value = formatted;
+    }
+
+    function validateForm(formId) {
+        const form = document.getElementById(formId);
+        const fields = form.querySelectorAll('input:not([type="button"]):not([type="checkbox"]), select, textarea');
+        let isValid = true;
+        let firstInvalidField = null;
+        
+        fields.forEach(el => {
+            if (el.id === 'output' || el.id === 'output_fire') return;
+            
+            if (!el.value.trim()) {
+                el.classList.add('input-error');
+                if(!firstInvalidField) {
+                    firstInvalidField = el;
+                }
+                isValid = false;
+            }
+        });
+
+        if(firstInvalidField) {
+            firstInvalidField.focus();
+        }
+        return isValid;
+    }
+
+    function clearFormHandler(formId, outputId) {
+        const form = document.getElementById(formId);
+        form.reset();
+        form.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+        
+        if(formId === 'medical-form') setCurrentDateTimeMedical();
+        if(formId === 'fire-form') setCurrentDateTimeFire();
+        
+        document.getElementById(outputId).value = "";
+        showToast('입력 폼이 초기화되었습니다.');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 초기 시간 설정
+        setCurrentDateTimeMedical();
+        setCurrentDateTimeFire();
+
+        document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+            input.addEventListener('input', function() {
+                if(this.value.trim() !== '') {
+                    this.classList.remove('input-error');
+                }
+            });
+        });
+
+        document.getElementById("clearBtn").addEventListener("click", () => clearFormHandler('medical-form', 'output'));
+        document.getElementById("clearFireBtn").addEventListener("click", () => clearFormHandler('fire-form', 'output_fire'));
+
+        document.getElementById("generateBtn").addEventListener("click", () => {
+            if (!validateForm('medical-form')) {
+                showToast('모든 항목을 입력해주세요. (빈칸은 N/A 입력)', 'error');
+                return;
+            }
+            const formData = new FormData(document.getElementById('medical-form'));
+            const data = Object.fromEntries(formData.entries());
+            const getVal = (key) => data[key] && data[key].trim() !== "" ? data[key].trim() : "N/A";
+            const sexStr = data['sex'] ? data['sex'] : "N/A";
+
+            const resultText = `**[FD처치기록지]**\n\n신고접수: ${getVal('incidentId')} | 출동차량: ${getVal('unit')}\n일시: ${getVal('datetime')} | 장소: ${getVal('location')}\n주 처치자: ${getVal('lead')}\n보조 처치자: ${getVal('partner')}\n\n환자성명: ${data['patientName'].trim() || "Unknown"} | Age: ${getVal('age')} | 성별: ${sexStr}\n의식수준: ${getVal('conscious')}\n\n주 호소: ${getVal('chiefComplaint')}\n활력징후 - 혈압: ${getVal('bp')}, 심박수: ${getVal('hr')}, 호흡수: ${getVal('rr')}, 산소포화도: ${getVal('spo2')}, 체온: ${getVal('temp')}, 통증점수: ${getVal('pain')}\n도착 시 상태: ${getVal('assessment')}\n\n처치내용: ${getVal('treatment')}\n사용약물: ${getVal('meds')}\n이송 목적지: ${getVal('transport')}\n결과: ${getVal('outcome')}`;
+
+            document.getElementById("output").value = resultText;
+            copyTextToClipboard("output", true);
+        });
+
+        document.getElementById("generateFireBtn").addEventListener("click", () => {
+// ----------------------------------------------------------------
+        // [추가된 로직] 매뉴얼 실시간 검색 기능
+        // ----------------------------------------------------------------
+        const searchInput = document.getElementById('search-input');
+        const searchResultsContainer = document.getElementById('search-results-container');
+        const mainContent = document.querySelector('main');
+
+        searchInput.addEventListener('input', async (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            
+            // 검색어가 비어있으면 검색 결과창을 숨기고 원본 메인 화면 복구
+            if (!query) {
+                searchResultsContainer.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                return;
+            }
+
+            // ManualManager를 통해 JSON 데이터를 가져옴
+            const data = await ManualManager.fetchData();
+            if (!data) return;
+
+            let resultsHtml = '';
+            let matchCount = 0;
+
+            // JSON 데이터 전체를 순회하며 검색어 매칭
+            for (const [tabId, items] of Object.entries(data)) {
+                items.forEach(item => {
+                    // 순수 텍스트만 추출 (HTML 태그 클래스명 등이 검색되는 것 방지)
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = item.content;
+                    const plainText = tempDiv.textContent || tempDiv.innerText || "";
+                    
+                    // 제목이나 내용에 검색어가 포함되어 있는지 확인
+                    if (item.title.toLowerCase().includes(query) || plainText.toLowerCase().includes(query)) {
+                        matchCount++;
+                        // 검색된 항목은 직관적으로 보이도록 open 속성을 추가해 펼쳐진 상태로 렌더링
+                        resultsHtml += `
+                            <details class="group bg-white dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-lg mb-4" open>
+                                <summary class="flex justify-between items-center font-bold list-none p-6 text-slate-800 dark:text-slate-300 text-base">
+                                    <span class="text-lg text-lafd-red dark:text-red-500">🔹 ${item.title}</span>
+                                </summary>
+                                <div class="text-slate-600 dark:text-slate-400 text-base mt-2 leading-loose px-6 pb-6 space-y-6 border-t border-slate-100 dark:border-slate-800/50 pt-5">
+                                    ${item.content}
+                                </div>
+                            </details>
+                        `;
+                    }
+                });
+            }
+
+            // 매칭된 결과가 없을 경우의 UI
+            if (matchCount === 0) {
+                resultsHtml = `
+                    <div class="bg-white dark:bg-slate-900/60 p-10 rounded-3xl border border-slate-200 dark:border-slate-800 text-center shadow-sm">
+                        <p class="text-slate-500 dark:text-slate-400 font-bold text-lg">🔍 '${e.target.value}'에 대한 검색 결과가 없습니다.</p>
+                        <p class="text-sm text-slate-400 mt-2">검색어를 바르게 입력했는지 확인해 주세요.</p>
+                    </div>`;
+            }
+
+            // 검색 결과 컨테이너에 HTML 삽입
+            searchResultsContainer.innerHTML = `<h2 class="text-xl font-black text-slate-800 dark:text-white mb-4 pl-2">검색 결과 (${matchCount}건)</h2>` + resultsHtml;
+            
+            // 기존 메인 탭 컨텐츠를 숨기고 검색 결과창을 표시
+            mainContent.classList.add('hidden');
+            searchResultsContainer.classList.remove('hidden');
+        });
+            if (!validateForm('fire-form')) {
+                showToast('모든 항목을 입력해주세요. (빈칸은 N/A 입력)', 'error');
+                return;
+            }
+            const formData = new FormData(document.getElementById('fire-form'));
+            const data = Object.fromEntries(formData.entries());
+            const getVal = (key) => data[key] && data[key].trim() !== "" ? data[key].trim() : "N/A";
+            
+            const resultText = `**[FD화재출동보고서]**\n\n신고접수: ${getVal('incidentId_fire')} | 출동차량: ${getVal('unit_fire')}\n일시: ${getVal('datetime_fire')} | 장소: ${getVal('location_fire')}\n현장 지휘관: ${getVal('commander_fire')}\n출동 인원: ${getVal('crew_fire')}\n\n화재 유형: ${getVal('fireType_fire')} | 대상물/구조: ${getVal('buildingType_fire')}\n화재 규모: ${getVal('fireLevel_fire')}\n연기/화염 상태: ${getVal('smokeFlame_fire')}\n도착 시 상태: ${getVal('arrivalStatus_fire')}\n\n인명 구조 여부: ${getVal('rescue_fire')}\n대피 조치: ${getVal('evacuation_fire')}\n진압 활동: ${getVal('suppression_fire')}\n추가 지원 요청: ${getVal('support_fire')}\n\n부상자: ${getVal('injuries_fire')}\n재산 피해: ${getVal('propertyDamage_fire')}\n추정 원인: ${getVal('cause_fire')}\n잔불 정리/환기: ${getVal('overhaul_fire')}\n현장 인계/통제: ${getVal('handover_fire')}\n결과: ${getVal('outcome_fire')}`;
+
+            document.getElementById("output_fire").value = resultText;
+            copyTextToClipboard("output_fire", true);
+        });
+    });
+    </script>
+</body>
+</html>
