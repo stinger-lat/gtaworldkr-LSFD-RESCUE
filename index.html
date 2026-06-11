@@ -48,6 +48,16 @@
             .sub-tab.active {
                 @apply bg-lafd-red text-white shadow-sm dark:bg-red-600;
             }
+            .option-btn {
+                @apply px-4 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-bold cursor-pointer transition-all shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 select-none m-0;
+            }
+            .option-btn.active {
+                @apply border-lafd-red bg-red-50 text-lafd-red dark:border-red-500 dark:bg-red-900/30 dark:text-red-400 ring-2 ring-red-500/20;
+            }
+            .required::after {
+                content: " *";
+                @apply text-lafd-red dark:text-red-500;
+            }
         }
     </style>
 
@@ -105,184 +115,6 @@
         .tab-content { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* =========================================
-           PreHospital Case Report 단독 스코프 스타일
-           ========================================= */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-        
-        #prehospital-scope {
-            font-family: 'Noto Sans KR', sans-serif;
-            color: #e2e8f0;
-            line-height: 1.6;
-            text-align: left;
-        }
-        #prehospital-scope * {
-            box-sizing: border-box;
-        }
-        #prehospital-scope .ph-container {
-            width: 100%;
-            background: #1e2937;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            border: 3px solid #ef4444;
-        }
-        #prehospital-scope header {
-            background: linear-gradient(to right, #1e40af, #3b82f6);
-            padding: 30px;
-            text-align: center;
-            color: white;
-            position: relative;
-            margin: 0;
-            border-radius: 0;
-        }
-        #prehospital-scope header::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: #ef4444;
-        }
-        #prehospital-scope h1 {
-            margin: 0;
-            font-size: 2.4em;
-            letter-spacing: 2px;
-            font-weight: bold;
-            color: white;
-        }
-        #prehospital-scope .subtitle {
-            font-size: 1.15em;
-            opacity: 0.95;
-            margin-top: 8px;
-        }
-        #prehospital-scope .ph-form-section {
-            padding: 35px;
-        }
-        #prehospital-scope .section-title {
-            font-size: 1.45em;
-            font-weight: 700;
-            color: #60a5fa;
-            margin-bottom: 18px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #334155;
-            display: block;
-        }
-        #prehospital-scope .ph-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        #prehospital-scope .field-group {
-            margin-bottom: 30px;
-        }
-        #prehospital-scope label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #cbd5e1;
-            font-size: 1em;
-        }
-        #prehospital-scope .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        #prehospital-scope .option-btn {
-            padding: 10px 16px;
-            border: 2px solid #475569;
-            background: #334155;
-            color: #e2e8f0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
-            user-select: none;
-            font-size: 1em;
-            margin: 0;
-        }
-        #prehospital-scope .option-btn:hover {
-            background: #475569;
-            border-color: #60a5fa;
-        }
-        #prehospital-scope .option-btn.active {
-            background: #3b82f6;
-            border-color: #60a5fa;
-            color: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }
-        #prehospital-scope input[type="text"], 
-        #prehospital-scope input[type="number"], 
-        #prehospital-scope textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #475569;
-            background: #1e2937;
-            color: #e2e8f0;
-            border-radius: 8px;
-            font-size: 1em;
-            outline: none;
-            box-shadow: none;
-            margin: 0;
-        }
-        #prehospital-scope input[type="text"]:focus, 
-        #prehospital-scope input[type="number"]:focus, 
-        #prehospital-scope textarea:focus {
-            border-color: #60a5fa;
-        }
-        #prehospital-scope .vitals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-        }
-        #prehospital-scope .copy-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.15em;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 30px;
-            transition: all 0.3s;
-            text-align: center;
-        }
-        #prehospital-scope .copy-btn:hover {
-            background: #f87171;
-            transform: translateY(-2px);
-        }
-        #prehospital-scope .ph-footer {
-            background: #0f172a;
-            padding: 25px;
-            text-align: center;
-            font-size: 0.95em;
-            color: #94a3b8;
-        }
-        #prehospital-scope .required::after {
-            content: " *";
-            color: #ef4444;
-        }
-        #prehospital-scope .other-input {
-            margin-top: 8px;
-        }
-        #prehospital-scope .clock-box {
-            position:absolute;
-            top:18px;
-            right:24px;
-            text-align:right;
-            font-size:0.9em;
-            line-height:1.4;
-            color:rgba(255,255,255,0.95);
-            font-weight:500;
-        }
-        #prehospital-scope .clock-label {
-            font-size:0.8em;
-            opacity:0.8;
-            letter-spacing:1px;
-        }
     </style>
     <script>
         !function(){document.addEventListener("contextmenu",(e=>e.preventDefault())),document.addEventListener("keydown",(e=>{123===e.keyCode||e.ctrlKey&&e.shiftKey&&(73===e.keyCode||74===e.keyCode||67===e.keyCode)||e.ctrlKey&&85===e.keyCode?e.preventDefault():null}))}();
@@ -305,7 +137,7 @@
                 </div>
                 <div>
                     <h1 class="font-black text-xs tracking-widest text-slate-500 dark:text-slate-400 uppercase">GTAW-KR LSFD</h1>
-                    <p class="text-lg text-lafd-navy dark:text-white font-black tracking-tight truncate">구조 대응기법 교본</p>
+                    <p class="text-lg text-lafd-navy dark:text-white font-black tracking-tight truncate">소방 대응기법 교본</p>
                 </div>
             </div>
             
@@ -529,7 +361,7 @@
                 <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🛠️ 화재현장 검색 및 구조</h2>
                 <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
                 <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-500 p-5 rounded-xl text-blue-800 dark:text-blue-200 shadow-sm mt-4">
-                    💡 구조대원들은 구조대상자를 검색하는 동안 항상 자신의 안전을 염두에 두어야 한다. 또한 현장지휘관은 검색과 구조작업에서 대원들이 직면하게 되는 위험성을 늘 염두에 두고 있어야 한다.
+                    💡 구조대원들은 구조대상자를 검색하는 동안 항상 자신의 안전을 염두에 두어야 가장 우선시되어야 한다. 또한 현장지휘관은 검색과 구조작업에서 대원들이 직면하게 되는 위험성을 늘 염두에 두고 있어야 한다.
                 </div>
                     <div>
                         <p class="font-bold text-lafd-red dark:text-red-400 text-lg mb-2">건물 탐색시의 안전</p>
@@ -581,7 +413,7 @@
                 <div class="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 text-base space-y-8 shadow-sm transition-all duration-300 hover:shadow-lg">
                     <p class="text-slate-600 dark:text-slate-400 text-center py-10 font-bold">현장대원은 각종 동물의 습성을 이해하고 동물의 위험한 돌발 행동에 대처할 필요가 있다.<br>
 					반려동물이라 하더라도 모든 동물은 위해를 끼칠 수 있으므로 현장 대응하는 대원은 보호장비를 갖추고 포획한 동물은 함부로 다루어서는 아니 되며, 
-					포획과정에서 동물을 학대해서도 아니 된다. 포획할 때에는 포획할 동물이 위협적인지, 병에 걸려 있는지, 겁을 먹고 있는지 등 상태를 파악하고 행동한다.</br>
+					포획과정에서 동물을 학대해서도 아니 된다. 포획할 때에는 포획할 동물이 위협적인지, 병에 걸려 있는지, 겁을 먹고 있는지 등 상태 파악하고 행동한다.</br>
 				</p>
                 </div>
             </section>          
@@ -597,155 +429,170 @@
             </section>
 
             <section id="section-civ-report" class="tab-content hidden space-y-6">
-                <div id="prehospital-scope">
-                    <div class="ph-container">
-                        <header>
-                            <div class="clock-box">
-                                <div class="clock-label">KOREA STANDARD TIME</div>
-                                <div id="kst-clock"></div>
-                            </div>
-
-                            <h1 style="margin:0;font-size:2.3em;letter-spacing:2px;">PREHOSPITAL CARE REPORT</h1>
-                            <div style="margin-top:15px;font-size:1.05em;font-weight:700;letter-spacing:2px;">
+                <div id="prehospital-scope" class="bg-white dark:bg-slate-900/80 p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl transition-all duration-300">
+                    <div class="text-base text-slate-600 dark:text-slate-400 leading-loose border-b border-slate-200 dark:border-slate-800 pb-5 mb-8 flex justify-between items-end">
+                        <div>
+                            <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-wider m-0">PREHOSPITAL CARE REPORT</h1>
+                            <div class="mt-3 text-lg font-bold text-lafd-navy dark:text-amber-500 tracking-widest">
                                 LOS SANTOS FIRE DEPARTMENT
                             </div>
-                            <div style="margin-top:6px;font-size:0.95em;opacity:.95;">
+                            <div class="mt-1 text-sm text-slate-500 dark:text-slate-400">
                                 Emergency Medical Services
                             </div>
-                        </header>
-                        
-                        <div class="ph-form-section">
-                            <div class="field-group">
-                                <label class="section-title required">출동정보</label>
-                                <div class="ph-grid">
-                                    <div>
-                                        <label>신고접수</label>
-                                        <input type="text" id="report-time" placeholder="LSPD dep / 26-300HL / 직접식별">
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs font-bold tracking-wider opacity-80 mb-1">KOREA STANDARD TIME</div>
+                            <div id="kst-clock" class="text-lg font-bold text-lafd-red dark:text-red-400"></div>
+                        </div>
+                    </div>
+                    
+                    <form id="ems-form" class="space-y-8">
+                        <div class="space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                출동정보
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">신고접수</label>
+                                    <input type="text" id="report-time" class="form-input" placeholder="LSPD dep / 26-300HL / 직접식별">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">일시</label>
+                                    <input type="text" id="dispatch-time" class="form-input" placeholder="예: 2026-06-11 14:35">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">현장위치</label>
+                                    <input type="text" id="location" class="form-input" placeholder="예: Mission Row, Los Santos">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">출동인원</label>
+                                    <input type="text" id="crew" class="form-input" placeholder="출동인원 성명">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">운용차량</label>
+                                    <input type="text" id="vehicle" class="form-input" placeholder="RA520">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                환자정보
+                            </div>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">이름</label>
+                                    <div class="flex gap-2 items-center">
+                                        <input type="text" id="patient-name" class="form-input" placeholder="이름">
+                                        <div class="option-btn whitespace-nowrap" data-group="name-confirm" data-value="확인불가">확인불가</div>
                                     </div>
-                                    <div>
-                                        <label>일시</label>
-                                        <input type="text" id="dispatch-time" placeholder="예: 2026-06-11 14:35">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">나이</label>
+                                    <div class="flex gap-2 items-center">
+                                        <input type="number" id="patient-age" class="form-input" placeholder="나이">
+                                        <div class="option-btn whitespace-nowrap" data-group="age-confirm" data-value="확인불가">확인불가</div>
                                     </div>
-                                    <div>
-                                        <label>현장위치</label>
-                                        <input type="text" id="location" placeholder="예: Mission Row, Los Santos">
-                                    </div>
-                                    <div>
-                                        <label>출동인원</label>
-                                        <input type="text" id="crew" placeholder="출동인원 성명" style="width: 100%;">
-                                    </div>
-                                    <div>
-                                        <label>운용차량</label>
-                                        <input type="text" id="vehicle" placeholder="RA520">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold required">성별</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="option-btn" data-group="gender" data-value="남">남</div>
+                                        <div class="option-btn" data-group="gender" data-value="여">여</div>
+                                        <div class="option-btn" data-group="gender" data-value="확인불가">확인불가</div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="field-group">
-                                <label class="section-title required">환자정보</label>
-                                <div class="ph-grid" style="gap: 35px;">
-                                    <div>
-                                        <label>이름</label>
-                                        <div style="display: flex; gap: 10px; align-items: center;">
-                                            <input type="text" id="patient-name" placeholder="이름" style="flex: 1;">
-                                            <div class="option-btn" data-group="name-confirm" data-value="확인불가" style="padding: 8px 12px; font-size: 0.95em; white-space: nowrap;">확인불가</div>
-                                        </div>
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2 required">
+                                주호소
+                            </div>
+                            <div>
+                                <input type="text" id="chief-complaint" class="form-input text-lg" placeholder="예: 총상 / 자상 / 심정지 / 교통사고 등">
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2 required">
+                                의식수준
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="option-btn" data-group="conscious" data-value="A">A</div>
+                                <div class="option-btn" data-group="conscious" data-value="V">V</div>
+                                <div class="option-btn" data-group="conscious" data-value="P">P</div>
+                                <div class="option-btn" data-group="conscious" data-value="U">U</div>
+                            </div>
+                        </div>
+
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2 required">
+                                생체징후
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">혈압</label>
+                                    <div class="flex flex-wrap gap-2 mb-2">
+                                        <div class="option-btn" data-group="bp-status">정상</div>
+                                        <div class="option-btn" data-group="bp-status">고혈압</div>
+                                        <div class="option-btn" data-group="bp-status">저혈압</div>
+                                        <div class="option-btn" data-group="bp-status">측정불가</div>
+                                        <div class="option-btn" data-group="bp-status">미측정</div>
                                     </div>
-                                    <div>
-                                        <label>나이</label>
-                                        <div style="display: flex; gap: 10px; align-items: center;">
-                                            <input type="number" id="patient-age" placeholder="나이" style="width: 120px;">
-                                            <div class="option-btn" data-group="age-confirm" data-value="확인불가" style="padding: 8px 12px; font-size: 0.95em; white-space: nowrap;">확인불가</div>
-                                        </div>
+                                    <input type="text" id="bp-detail" class="form-input other-input" style="display: none;" placeholder="상세 (예: 120/80)">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">맥박</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="option-btn" data-group="pulse-status">정상</div>
+                                        <div class="option-btn" data-group="pulse-status">빈맥</div>
+                                        <div class="option-btn" data-group="pulse-status">서맥</div>
+                                        <div class="option-btn" data-group="pulse-status">맥박없음</div>
+                                        <div class="option-btn" data-group="pulse-status">미측정</div>
                                     </div>
-                                    <div>
-                                        <label>성별</label>
-                                        <div class="options">
-                                            <div class="option-btn" data-group="gender" data-value="남">남</div>
-                                            <div class="option-btn" data-group="gender" data-value="여">여</div>
-                                            <div class="option-btn" data-group="gender" data-value="확인불가">확인불가</div>
-                                        </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">호흡수</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="option-btn" data-group="resp-status">정상</div>
+                                        <div class="option-btn" data-group="resp-status">빠른호흡</div>
+                                        <div class="option-btn" data-group="resp-status">느린호흡</div>
+                                        <div class="option-btn" data-group="resp-status">호흡정지</div>
+                                        <div class="option-btn" data-group="resp-status">미측정</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">체온</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="option-btn" data-group="temp-status">정상</div>
+                                        <div class="option-btn" data-group="temp-status">고체온</div>
+                                        <div class="option-btn" data-group="temp-status">저체온</div>
+                                        <div class="option-btn" data-group="temp-status">측정불가</div>
+                                        <div class="option-btn" data-group="temp-status">미측정</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">산소포화도</label>
+                                    <div class="flex flex-wrap gap-2">
+                                        <div class="option-btn" data-group="spo2-status">정상</div>
+                                        <div class="option-btn" data-group="spo2-status">저산소증</div>
+                                        <div class="option-btn" data-group="spo2-status">측정불가</div>
+                                        <div class="option-btn" data-group="spo2-status">미측정</div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="field-group">
-                                <label class="section-title required">주호소</label>
-                                <input type="text" id="chief-complaint" placeholder="예: 총상 / 자상 / 심정지 / 교통사고 등" style="font-size: 1.1em;">
+                        <div class="form-section space-y-5" id="symptoms-section">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                환자 증상
                             </div>
-
-                            <div class="field-group">
-                                <label class="section-title required">의식수준</label>
-                                <div class="options">
-                                    <div class="option-btn" data-group="conscious" data-value="A">A</div>
-                                    <div class="option-btn" data-group="conscious" data-value="V">V</div>
-                                    <div class="option-btn" data-group="conscious" data-value="P">P</div>
-                                    <div class="option-btn" data-group="conscious" data-value="U">U</div>
-                                </div>
-                            </div>
-
-                            <div class="field-group">
-                                <label class="section-title required">생체징후</label>
-                                <div class="vitals-grid">
-                                    <div>
-                                        <label>혈압</label>
-                                        <div class="options">
-                                            <div class="option-btn" data-group="bp-status">정상</div>
-                                            <div class="option-btn" data-group="bp-status">고혈압</div>
-                                            <div class="option-btn" data-group="bp-status">저혈압</div>
-                                            <div class="option-btn" data-group="bp-status">측정불가</div>
-                                            <div class="option-btn" data-group="bp-status">미측정</div>
-                                        </div>
-                                        <input type="text" id="bp-detail" placeholder="상세 (예: 120/80)" class="other-input" style="display: none;">
-                                    </div>
-                                    <div>
-                                        <label>맥박</label>
-                                        <div class="options">
-                                            <div class="option-btn" data-group="pulse-status">정상</div>
-                                            <div class="option-btn" data-group="pulse-status">빈맥</div>
-                                            <div class="option-btn" data-group="pulse-status">서맥</div>
-                                            <div class="option-btn" data-group="pulse-status">맥박없음</div>
-                                            <div class="option-btn" data-group="pulse-status">미측정</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label>호흡수</label>
-                                        <div class="options">
-                                            <div class="option-btn" data-group="resp-status">정상</div>
-                                            <div class="option-btn" data-group="resp-status">빠른호흡</div>
-                                            <div class="option-btn" data-group="resp-status">느린호흡</div>
-                                            <div class="option-btn" data-group="resp-status">호흡정지</div>
-                                            <div class="option-btn" data-group="resp-status">미측정</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label>체온</label>
-                                        <div class="options">
-                                            <div class="option-btn" data-group="temp-status">정상</div>
-                                            <div class="option-btn" data-group="temp-status">고체온</div>
-                                            <div class="option-btn" data-group="temp-status">저체온</div>
-                                            <div class="option-btn" data-group="temp-status">측정불가</div>
-                                            <div class="option-btn" data-group="temp-status">미측정</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label>산소포화도</label>
-                                        <div class="options">
-                                            <div class="option-btn" data-group="spo2-status">정상</div>
-                                            <div class="option-btn" data-group="spo2-status">저산소증</div>
-                                            <div class="option-btn" data-group="spo2-status">측정불가</div>
-                                            <div class="option-btn" data-group="spo2-status">미측정</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field-group" id="symptoms-section">
-                                <label class="section-title">환자 증상</label>
-                                
-                                <div style="margin-bottom: 25px;">
-                                    <strong>1) 전신</strong>
-                                    <div class="options">
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">1) 전신</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="sym-general">고열</div>
                                         <div class="option-btn" data-group="sym-general">오한</div>
                                         <div class="option-btn" data-group="sym-general">마비</div>
@@ -753,12 +600,12 @@
                                         <div class="option-btn" data-group="sym-general">아나필락시스</div>
                                         <div class="option-btn other-btn" data-group="sym-general" data-other="other-general">기타</div>
                                     </div>
-                                    <textarea id="other-general" class="other-input" style="display:none;" placeholder="기타 증상"></textarea>
+                                    <textarea id="other-general" class="form-textarea other-input" style="display:none;" placeholder="기타 증상"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>2) 신경계</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">2) 신경계</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="sym-neuro">의식소실</div>
                                         <div class="option-btn" data-group="sym-neuro">경련/발작</div>
                                         <div class="option-btn" data-group="sym-neuro">두통</div>
@@ -766,12 +613,12 @@
                                         <div class="option-btn" data-group="sym-neuro">어지러움</div>
                                         <div class="option-btn other-btn" data-group="sym-neuro" data-other="other-neuro">기타</div>
                                     </div>
-                                    <textarea id="other-neuro" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                    <textarea id="other-neuro" class="form-textarea other-input" style="display:none;" placeholder="기타"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>3) 안면</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">3) 안면</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="sym-face">안면통증</div>
                                         <div class="option-btn" data-group="sym-face">이명</div>
                                         <div class="option-btn" data-group="sym-face">목통증</div>
@@ -779,12 +626,12 @@
                                         <div class="option-btn" data-group="sym-face">이물감</div>
                                         <div class="option-btn other-btn" data-group="sym-face" data-other="other-face">기타</div>
                                     </div>
-                                    <textarea id="other-face" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                    <textarea id="other-face" class="form-textarea other-input" style="display:none;" placeholder="기타"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>4) 호흡기계</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">4) 호흡기계</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="sym-resp">호흡곤란</div>
                                         <div class="option-btn" data-group="sym-resp">호흡정지</div>
                                         <div class="option-btn" data-group="sym-resp">객혈</div>
@@ -792,24 +639,24 @@
                                         <div class="option-btn" data-group="sym-resp">알레르기반응</div>
                                         <div class="option-btn other-btn" data-group="sym-resp" data-other="other-resp">기타</div>
                                     </div>
-                                    <textarea id="other-resp" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                    <textarea id="other-resp" class="form-textarea other-input" style="display:none;" placeholder="기타"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>5) 심혈관계</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">5) 심혈관계</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="sym-cardio">심정지</div>
                                         <div class="option-btn" data-group="sym-cardio">가슴불편감(흉통포함)</div>
                                         <div class="option-btn" data-group="sym-cardio">두근거림</div>
                                         <div class="option-btn" data-group="sym-cardio">실신</div>
                                         <div class="option-btn other-btn" data-group="sym-cardio" data-other="other-cardio">기타</div>
                                     </div>
-                                    <textarea id="other-cardio" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                    <textarea id="other-cardio" class="form-textarea other-input" style="display:none;" placeholder="기타"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>6) 소화기계</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">6) 소화기계</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="sym-digest">복통</div>
                                         <div class="option-btn" data-group="sym-digest">오심</div>
                                         <div class="option-btn" data-group="sym-digest">구토</div>
@@ -817,12 +664,12 @@
                                         <div class="option-btn" data-group="sym-digest">변비</div>
                                         <div class="option-btn other-btn" data-group="sym-digest" data-other="other-digest">기타</div>
                                     </div>
-                                    <textarea id="other-digest" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                    <textarea id="other-digest" class="form-textarea other-input" style="display:none;" placeholder="기타"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>7) 외상</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">7) 외상</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="trauma">골절</div>
                                         <div class="option-btn" data-group="trauma">탈구</div>
                                         <div class="option-btn" data-group="trauma">뼈</div>
@@ -835,16 +682,20 @@
                                         <div class="option-btn" data-group="trauma">화상</div>
                                         <div class="option-btn other-btn" data-group="trauma" data-other="other-trauma">기타</div>
                                     </div>
-                                    <textarea id="other-trauma" class="other-input" style="display:none;" placeholder="기타 외상"></textarea>
+                                    <textarea id="other-trauma" class="form-textarea other-input" style="display:none;" placeholder="기타 외상"></textarea>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="field-group">
-                                <label class="section-title">처치내용</label>
-                                
-                                <div style="margin-bottom: 25px;">
-                                    <strong>1) 기도</strong>
-                                    <div class="options">
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
+                                처치내용
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">1) 기도</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="airway">없음</div>
                                         <div class="option-btn" data-group="airway">기도기</div>
                                         <div class="option-btn" data-group="airway">LMA</div>
@@ -852,12 +703,12 @@
                                         <div class="option-btn" data-group="airway">기관절개</div>
                                         <div class="option-btn other-btn" data-group="airway" data-other="other-airway">기타</div>
                                     </div>
-                                    <textarea id="other-airway" class="other-input" style="display:none;" placeholder="기타 기도 처치"></textarea>
+                                    <textarea id="other-airway" class="form-textarea other-input" style="display:none;" placeholder="기타 기도 처치"></textarea>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>2) 호흡</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">2) 호흡</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="breath">없음</div>
                                         <div class="option-btn" data-group="breath">BVM</div>
                                         <div class="option-btn" data-group="breath">인공호흡기</div>
@@ -865,12 +716,12 @@
                                         <div class="option-btn" data-group="breath">안면마스크</div>
                                         <div class="option-btn other-btn" data-group="breath" data-other="other-breath">기타</div>
                                     </div>
-                                    <input type="text" id="oxygen" placeholder="Ex) 3L/min 산소투여" style="margin-top: 8px;">
+                                    <input type="text" id="oxygen" class="form-input" placeholder="Ex) 3L/min 산소투여">
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>3) 순환</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">3) 순환</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="circ">없음</div>
                                         <div class="option-btn" data-group="circ">심폐소생술</div>
                                         <div class="option-btn" id="monitoring-btn" data-group="circ">모니터링</div>
@@ -879,33 +730,33 @@
                                         <div class="option-btn" data-group="circ">정맥혈채혈</div>
                                     </div>
                                     
-                                    <div id="monitoring-options" class="options" style="display: none; margin-top: 8px; padding-left: 20px; border-left: 3px solid #60a5fa;">
+                                    <div id="monitoring-options" class="flex-wrap gap-2 mt-2 pl-4 border-l-2 border-lafd-navy dark:border-blue-500" style="display: none;">
                                         <div class="option-btn" data-group="circ-sub">혈압</div>
                                         <div class="option-btn" data-group="circ-sub">맥박</div>
                                         <div class="option-btn" data-group="circ-sub">산소포화도</div>
                                     </div>
                                     
-                                    <div id="ecg-options" class="options" style="display: none; margin-top: 8px; padding-left: 20px; border-left: 3px solid #60a5fa;">
+                                    <div id="ecg-options" class="flex-wrap gap-2 mt-2 pl-4 border-l-2 border-lafd-navy dark:border-blue-500" style="display: none;">
                                         <div class="option-btn" data-group="circ-sub">3유도심전도</div>
                                         <div class="option-btn" data-group="circ-sub">12유도심전도</div>
                                     </div>
                                 </div>
 
-                                <div style="margin-bottom: 25px;">
-                                    <strong>4) 약품</strong>
-                                    <div class="options">
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">4) 약품</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="med">없음</div>
                                         <div class="option-btn" data-group="med">생리식염수</div>
                                         <div class="option-btn" data-group="med">에피네프린</div>
                                         <div class="option-btn" data-group="med">리도카인</div>
                                         <div class="option-btn other-btn" data-group="med" data-other="other-med">기타</div>
                                     </div>
-                                    <textarea id="other-med" class="other-input" style="display:none;" placeholder="기타 약품 (용량, 방법 등)"></textarea>
+                                    <textarea id="other-med" class="form-textarea other-input" style="display:none;" placeholder="기타 약품 (용량, 방법 등)"></textarea>
                                 </div>
 
                                 <div>
-                                    <strong>5) 고정</strong>
-                                    <div class="options">
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">5) 고정</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
                                         <div class="option-btn" data-group="fix">없음</div>
                                         <div class="option-btn" data-group="fix">경추</div>
                                         <div class="option-btn" data-group="fix">척추</div>
@@ -913,28 +764,32 @@
                                         <div class="option-btn" data-group="fix">하지</div>
                                         <div class="option-btn other-btn" data-group="fix" data-other="other-fix">기타</div>
                                     </div>
-                                    <textarea id="other-fix" class="other-input" style="display:none;" placeholder="기타 고정"></textarea>
+                                    <textarea id="other-fix" class="form-textarea other-input" style="display:none;" placeholder="기타 고정"></textarea>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="field-group">
-                                <label class="section-title required">최종상태</label>
-                                <div class="options">
-                                    <div class="option-btn" data-group="final-status">귀가조치</div>
-                                    <div class="option-btn" data-group="final-status">현장사망</div>
-                                    <div class="option-btn" data-group="final-status">응급실이송</div>
-                                </div>
+                        <div class="form-section space-y-5">
+                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2 required">
+                                최종상태
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="option-btn" data-group="final-status">귀가조치</div>
+                                <div class="option-btn" data-group="final-status">현장사망</div>
+                                <div class="option-btn" data-group="final-status">응급실이송</div>
                             </div>
                         </div>
-                        
-                        <div style="padding: 0 35px 40px;">
-                            <button onclick="copyToClipboardPH()" class="copy-btn">📋 전체 내용 복사 (Discord 업로드용)</button>
+
+                        <div class="flex justify-between items-center pt-5 border-t border-slate-200 dark:border-slate-800 mt-8">
+                            <button type="button" onclick="copyToClipboardPH()" class="btn-primary copy-btn w-full sm:w-auto">
+                                📋 전체 내용 복사 (Discord 업로드용)
+                            </button>
                         </div>
                         
-                        <div class="ph-footer">
+                        <div class="text-center mt-6 text-sm text-slate-500 dark:text-slate-400">
                             Los Santos Fire Department • RP Record System • Made for immersive roleplay
                         </div>
-                    </div>
+                    </form>
                 </div>
             </section>
 
