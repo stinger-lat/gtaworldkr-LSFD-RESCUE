@@ -766,6 +766,31 @@
                                     </div>
                                     <textarea id="other-fix" class="form-textarea other-input" style="display:none;" placeholder="기타 고정"></textarea>
                                 </div>
+
+                                <div>
+                                    <strong class="block text-sm text-slate-700 dark:text-slate-400 mb-2">6) 기타</strong>
+                                    <div class="flex flex-wrap gap-2 mb-2">
+                                        <div class="option-btn" id="dressing-btn">드레싱</div>
+                                        <div class="option-btn" id="tourniquet-btn">지혈대</div>
+                                        <div class="option-btn" id="xstat-btn">X-stat (스펀지주사기)</div>
+                                    </div>
+
+                                    <div id="dressing-options" class="flex-wrap gap-2 mt-2 pl-4 border-l-2 border-lafd-navy dark:border-blue-500" style="display: none;">
+                                        <div class="option-btn" data-group="dressing-sub">단순드레싱(찰과상)</div>
+                                        <div class="option-btn" data-group="dressing-sub">압박드레싱</div>
+                                    </div>
+
+                                    <div id="tourniquet-options" class="flex-wrap gap-2 mt-2 pl-4 border-l-2 border-lafd-navy dark:border-blue-500" style="display: none;">
+                                        <div class="option-btn" data-group="tourniquet-sub">상지</div>
+                                        <div class="option-btn" data-group="tourniquet-sub">하지</div>
+                                    </div>
+
+                                    <div id="xstat-options" class="flex-wrap gap-2 mt-2 pl-4 border-l-2 border-lafd-navy dark:border-blue-500" style="display: none;">
+                                        <div class="option-btn" data-group="xstat-sub">흉부</div>
+                                        <div class="option-btn" data-group="xstat-sub">상복부</div>
+                                        <div class="option-btn" data-group="xstat-sub">하복부</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -1327,6 +1352,19 @@ function executeCopy(text, successCallback) {
             subActives.forEach(s => subs.push(s.textContent));
             text += `  └ 모니터링/심전도: ${subs.join(', ')}\n`;
         }
+
+        if (document.getElementById('dressing-btn').classList.contains('active')) {
+            const dressingActives = Array.from(document.querySelectorAll('#dressing-options .option-btn.active')).map(el => el.textContent);
+            if (dressingActives.length > 0) text += `드레싱: ${dressingActives.join(', ')}\n`;
+        }
+        if (document.getElementById('tourniquet-btn').classList.contains('active')) {
+            const tourniquetActives = Array.from(document.querySelectorAll('#tourniquet-options .option-btn.active')).map(el => el.textContent);
+            if (tourniquetActives.length > 0) text += `지혈대: ${tourniquetActives.join(', ')}\n`;
+        }
+        if (document.getElementById('xstat-btn').classList.contains('active')) {
+            const xstatActives = Array.from(document.querySelectorAll('#xstat-options .option-btn.active')).map(el => el.textContent);
+            if (xstatActives.length > 0) text += `X-stat: ${xstatActives.join(', ')}\n`;
+        }
         
         const oxygenVal = document.getElementById('oxygen').value.trim();
         if (oxygenVal) text += `산소투여: ${oxygenVal}\n`;
@@ -1429,8 +1467,11 @@ function copyToClipboardPH() {
             btn.addEventListener('click', function() {
                 const group = this.getAttribute('data-group');
                 const isOther = this.classList.contains('other-btn');
+                const isMainEtc = ['dressing-btn', 'tourniquet-btn', 'xstat-btn'].includes(this.id);
                 
-                if (group && !['sym-general','sym-neuro','sym-face','sym-resp','sym-cardio','sym-digest','trauma','airway','breath','circ','med','fix','circ-sub'].includes(group)) {
+                if (isMainEtc) {
+                    this.classList.toggle('active');
+                } else if (group && !['sym-general','sym-neuro','sym-face','sym-resp','sym-cardio','sym-digest','trauma','airway','breath','circ','med','fix','circ-sub','dressing-sub','tourniquet-sub','xstat-sub'].includes(group)) {
                     const siblings = document.querySelectorAll(`#prehospital-scope [data-group="${group}"]`);
                     const wasActive = this.classList.contains('active');
                     
@@ -1459,6 +1500,15 @@ function copyToClipboardPH() {
                     });
                 }
 
+                if (this.id === 'dressing-btn') {
+                    document.getElementById('dressing-options').style.display = this.classList.contains('active') ? 'flex' : 'none';
+                }
+                if (this.id === 'tourniquet-btn') {
+                    document.getElementById('tourniquet-options').style.display = this.classList.contains('active') ? 'flex' : 'none';
+                }
+                if (this.id === 'xstat-btn') {
+                    document.getElementById('xstat-options').style.display = this.classList.contains('active') ? 'flex' : 'none';
+                }
                 if (this.id === 'monitoring-btn') {
                     const monOpts = document.getElementById('monitoring-options');
                     monOpts.style.display = this.classList.contains('active') ? 'flex' : 'none';
