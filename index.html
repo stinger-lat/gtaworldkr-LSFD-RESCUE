@@ -104,6 +104,185 @@
         
         .tab-content { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* =========================================
+           PreHospital Case Report 단독 스코프 스타일
+           ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+        
+        #prehospital-scope {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #e2e8f0;
+            line-height: 1.6;
+            text-align: left;
+        }
+        #prehospital-scope * {
+            box-sizing: border-box;
+        }
+        #prehospital-scope .ph-container {
+            width: 100%;
+            background: #1e2937;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 3px solid #ef4444;
+        }
+        #prehospital-scope header {
+            background: linear-gradient(to right, #1e40af, #3b82f6);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin: 0;
+            border-radius: 0;
+        }
+        #prehospital-scope header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #ef4444;
+        }
+        #prehospital-scope h1 {
+            margin: 0;
+            font-size: 2.4em;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: white;
+        }
+        #prehospital-scope .subtitle {
+            font-size: 1.15em;
+            opacity: 0.95;
+            margin-top: 8px;
+        }
+        #prehospital-scope .ph-form-section {
+            padding: 35px;
+        }
+        #prehospital-scope .section-title {
+            font-size: 1.45em;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #334155;
+            display: block;
+        }
+        #prehospital-scope .ph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        #prehospital-scope .field-group {
+            margin-bottom: 30px;
+        }
+        #prehospital-scope label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #cbd5e1;
+            font-size: 1em;
+        }
+        #prehospital-scope .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #prehospital-scope .option-btn {
+            padding: 10px 16px;
+            border: 2px solid #475569;
+            background: #334155;
+            color: #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            user-select: none;
+            font-size: 1em;
+            margin: 0;
+        }
+        #prehospital-scope .option-btn:hover {
+            background: #475569;
+            border-color: #60a5fa;
+        }
+        #prehospital-scope .option-btn.active {
+            background: #3b82f6;
+            border-color: #60a5fa;
+            color: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        #prehospital-scope input[type="text"], 
+        #prehospital-scope input[type="number"], 
+        #prehospital-scope textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #475569;
+            background: #1e2937;
+            color: #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+            box-shadow: none;
+            margin: 0;
+        }
+        #prehospital-scope input[type="text"]:focus, 
+        #prehospital-scope input[type="number"]:focus, 
+        #prehospital-scope textarea:focus {
+            border-color: #60a5fa;
+        }
+        #prehospital-scope .vitals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+        #prehospital-scope .copy-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.15em;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        #prehospital-scope .copy-btn:hover {
+            background: #f87171;
+            transform: translateY(-2px);
+        }
+        #prehospital-scope .ph-footer {
+            background: #0f172a;
+            padding: 25px;
+            text-align: center;
+            font-size: 0.95em;
+            color: #94a3b8;
+        }
+        #prehospital-scope .required::after {
+            content: " *";
+            color: #ef4444;
+        }
+        #prehospital-scope .other-input {
+            margin-top: 8px;
+        }
+        #prehospital-scope .clock-box {
+            position:absolute;
+            top:18px;
+            right:24px;
+            text-align:right;
+            font-size:0.9em;
+            line-height:1.4;
+            color:rgba(255,255,255,0.95);
+            font-weight:500;
+        }
+        #prehospital-scope .clock-label {
+            font-size:0.8em;
+            opacity:0.8;
+            letter-spacing:1px;
+        }
     </style>
     <script>
         !function(){document.addEventListener("contextmenu",(e=>e.preventDefault())),document.addEventListener("keydown",(e=>{123===e.keyCode||e.ctrlKey&&e.shiftKey&&(73===e.keyCode||74===e.keyCode||67===e.keyCode)||e.ctrlKey&&85===e.keyCode?e.preventDefault():null}))}();
@@ -259,7 +438,7 @@
                                 <li>고압전류를 사용하는 전동 장비나 고온이 발생하는 용접기 등의 경우에는 반드시 전술장갑을 착용해야 한다.</li>
                                 <li>반지나 시계, 목걸이 등 장신구는 안전사고를 유발할 수 있고 부상을 악화시킬 수 있으므로 착용을 금지한다.</li>
                                 <li>분진이나 작은 파편이 발생하는 작업을 수행할 때에는 보호안경을 착용한다. 헬멧(또는 방수모)의 보호렌즈만으로는 충분한 보호가 어렵다.</li>
-                                <li>작업반경 내에는 장비조작에 관여하지 않는 대원과 일반인의 접근을 통제한다.</li>
+                                <li>작업반경 내에는 장비조작에 관여하지 않는 대원과 일반인의 접근을 통제 편집한다.</li>
                             </ul>
                         </div>
                     </div>
@@ -319,7 +498,7 @@
                 <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-500 p-5 rounded-xl text-blue-800 dark:text-blue-200 shadow-sm mt-4">
                     💡 붕괴현장이나 산악 등에서 실종된 구조대상자를 수색할 때에 인명구조견을 활용할 수 있다. 로스산토스 소방국 도심수색및구조팀 산하 인명구조견은 수색구조견(산악, 재해 등), 수상구조견으로 구분된다.
                 </div>
-                    <p class="text-slate-600 dark:text-slate-400 text-center py-10 font-bold">인명 구조 활동의 행동 지침서 역할을 하는 UN의 '국제 수색 구조 가이드 라인'에는 인명구조견이나 핸들러가 인명 구조 활동 중 부상을 당했을 경우 구조를 요하는 사람들 보다 최우선적으로 이들을 먼저 치료, 처치하게 되어있다. 또한 구조 활동에서 수색 초기에 인명구조견을 진입시키도록 되어있다.</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-center py-10 font-bold">인명 구조 활동의 행동 지침서 역할을 하는 UN의 '국제 수색 구조 가이드 라인'에는 인명구조견이나 핸들러가 인명 구조 활동 중 부상을 당했을 경우 구조를 요하는 사람들 보다 최우선적으로 이들을 먼저 치료, 처치하게 되어있다. 또한 구조 활동에서 수색 초기에 인명구조견 진입시키도록 되어있다.</p>
                     <div>
                         <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">1) 구조견의 활용범위</span>
                         <p class="text-slate-600 dark:text-slate-400 pl-4 leading-loose border-l-4 border-slate-200 dark:border-slate-700">
@@ -418,165 +597,344 @@
             </section>
 
             <section id="section-civ-report" class="tab-content hidden space-y-6">
-                <h2 class="text-2xl font-black text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4 text-lafd-red dark:text-red-500">🚨 구급출동 보고서 작성 도우미</h2>
-                
-                <div class="bg-white dark:bg-slate-900/80 p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl transition-all duration-300">
-                    <form id="medical-form" class="space-y-8">
-                        <div class="text-base text-slate-600 dark:text-slate-400 leading-loose border-b border-slate-200 dark:border-slate-800 pb-5">
-                        <span class="bg-red-50 dark:bg-red-950/60 text-lafd-red dark:text-red-400 border border-red-200 dark:border-red-900/40 px-3 py-1.5 font-bold rounded-lg text-sm mb-4 inline-block">안내사항: GTA World · Fire Department RP용 비공식 도우미 폼입니다.<br>폼 작성 후 생성 버튼을 누르면 클립보드에 자동 복사됩니다.</span>
-                        </div>
+                <div id="prehospital-scope">
+                    <div class="ph-container">
+                        <header>
+                            <div class="clock-box">
+                                <div class="clock-label">KOREA STANDARD TIME</div>
+                                <div id="kst-clock"></div>
+                            </div>
 
-                        <div class="space-y-5">
-                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
-                                1. 출동 정보
+                            <h1 style="margin:0;font-size:2.3em;letter-spacing:2px;">PREHOSPITAL CARE REPORT</h1>
+                            <div style="margin-top:15px;font-size:1.05em;font-weight:700;letter-spacing:2px;">
+                                LOS SANTOS FIRE DEPARTMENT
                             </div>
-                            <div class="form-grid">
-                                <div>
-                                    <label for="incidentId" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">신고접수</label>
-                                    <input type="text" id="incidentId" name="incidentId" class="form-input" placeholder="예: #2026-0112" />
-                                </div>
-                                <div>
-                                    <label for="unit" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">출동 유닛</label>
-                                    <input type="text" id="unit" name="unit" class="form-input" placeholder="예: RA 51 / E 51" />
-                                </div>
-                                <div>
-                                    <label for="datetime" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">일시</label>
-                                    <input type="text" id="datetime" name="datetime" class="form-input" />
-                                </div>
-                                <div>
-                                    <label for="location" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">현장 위치</label>
-                                    <input type="text" id="location" name="location" class="form-input" placeholder="예: Davis Ave / Innocence Blvd" />
+                            <div style="margin-top:6px;font-size:0.95em;opacity:.95;">
+                                Emergency Medical Services
+                            </div>
+                        </header>
+                        
+                        <div class="ph-form-section">
+                            <div class="field-group">
+                                <label class="section-title required">출동정보</label>
+                                <div class="ph-grid">
+                                    <div>
+                                        <label>신고접수</label>
+                                        <input type="text" id="report-time" placeholder="LSPD dep / 26-300HL / 직접식별">
+                                    </div>
+                                    <div>
+                                        <label>일시</label>
+                                        <input type="text" id="dispatch-time" placeholder="예: 2026-06-11 14:35">
+                                    </div>
+                                    <div>
+                                        <label>현장위치</label>
+                                        <input type="text" id="location" placeholder="예: Mission Row, Los Santos">
+                                    </div>
+                                    <div>
+                                        <label>출동인원</label>
+                                        <input type="text" id="crew" placeholder="출동인원 성명" style="width: 100%;">
+                                    </div>
+                                    <div>
+                                        <label>운용차량</label>
+                                        <input type="text" id="vehicle" placeholder="RA520">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-grid pt-2">
-                                <div>
-                                    <label for="lead" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">담당 대원 (Lead)</label>
-                                    <input type="text" id="lead" name="lead" class="form-input" placeholder="성명 / Badge" />
-                                </div>
-                                <div>
-                                    <label for="partner" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">파트너</label>
-                                    <input type="text" id="partner" name="partner" class="form-input" placeholder="선택사항" />
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-section space-y-5">
-                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
-                                2. 환자 기본정보
-                            </div>
-                            <div class="form-grid">
-                                <div>
-                                    <label for="patientName" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">이름</label>
-                                    <input type="text" id="patientName" name="patientName" class="form-input" placeholder="Unknown 도 가능" />
-                                </div>
-                                <div>
-                                    <label for="age" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">나이</label>
-                                    <input type="text" id="age" name="age" class="form-input" placeholder="예: 24" />
-                                </div>
-                                <div>
-                                    <label for="sex" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">성별</label>
-                                    <select id="sex" name="sex" class="form-select">
-                                        <option value="">선택</option>
-                                        <option value="M">남</option>
-                                        <option value="F">여</option>
-                                        <option value="Unknown">Unknown</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="conscious" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">의식수준(A/V/P/U)</label>
-                                    <select id="conscious" name="conscious" class="form-select">
-                                        <option value="">선택</option>
-                                        <option value="의식명료">의식명료</option>
-                                        <option value="음성에반응">음성에반응</option>
-                                        <option value="통증에반응">통증에반응</option>
-                                        <option value="무의식">무의식</option>
-                                    </select>
+                            <div class="field-group">
+                                <label class="section-title required">환자정보</label>
+                                <div class="ph-grid" style="gap: 35px;">
+                                    <div>
+                                        <label>이름</label>
+                                        <div style="display: flex; gap: 10px; align-items: center;">
+                                            <input type="text" id="patient-name" placeholder="이름" style="flex: 1;">
+                                            <div class="option-btn" data-group="name-confirm" data-value="확인불가" style="padding: 8px 12px; font-size: 0.95em; white-space: nowrap;">확인불가</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>나이</label>
+                                        <div style="display: flex; gap: 10px; align-items: center;">
+                                            <input type="number" id="patient-age" placeholder="나이" style="width: 120px;">
+                                            <div class="option-btn" data-group="age-confirm" data-value="확인불가" style="padding: 8px 12px; font-size: 0.95em; white-space: nowrap;">확인불가</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>성별</label>
+                                        <div class="options">
+                                            <div class="option-btn" data-group="gender" data-value="남">남</div>
+                                            <div class="option-btn" data-group="gender" data-value="여">여</div>
+                                            <div class="option-btn" data-group="gender" data-value="확인불가">확인불가</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-section space-y-5">
-                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
-                                3. 초기 평가
+                            <div class="field-group">
+                                <label class="section-title required">주호소</label>
+                                <input type="text" id="chief-complaint" placeholder="예: 총상 / 자상 / 심정지 / 교통사고 등" style="font-size: 1.1em;">
                             </div>
-                            <div>
-                                <label for="chiefComplaint" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">주호소 (Chief Complaint)</label>
-                                <input type="text" id="chiefComplaint" name="chiefComplaint" class="form-input" placeholder="예: 흉통, 호흡곤란, 화상 등" />
-                            </div>
-                            <div class="form-grid-small pt-2">
-                                <div>
-                                    <label for="bp" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">혈압 (BP)</label>
-                                    <input type="text" id="bp" name="bp" class="form-input" placeholder="예: 120/80" />
-                                </div>
-                                <div>
-                                    <label for="hr" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">맥박 (HR)</label>
-                                    <input type="text" id="hr" name="hr" class="form-input" placeholder="예: 88" />
-                                </div>
-                                <div>
-                                    <label for="rr" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">호흡수 (RR)</label>
-                                    <input type="text" id="rr" name="rr" class="form-input" placeholder="예: 18" />
-                                </div>
-                                <div>
-                                    <label for="spo2" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">SpO₂</label>
-                                    <input type="text" id="spo2" name="spo2" class="form-input" placeholder="예: 98% RA" />
-                                </div>
-                                <div>
-                                    <label for="temp" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">체온 (Temp)</label>
-                                    <input type="text" id="temp" name="temp" class="form-input" placeholder="예: 36.7℃" />
-                                </div>
-                                <div>
-                                    <label for="pain" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">통증 점수 (0–10)</label>
-                                    <input type="text" id="pain" name="pain" class="form-input" placeholder="예: 6/10" />
-                                </div>
-                            </div>
-                            <div class="pt-2">
-                                <label for="assessment" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">도착 시 상태</label>
-                                <textarea id="assessment" name="assessment" class="form-textarea" placeholder="예: 의식 명료, CC 외 특이소견 없음 / 좌측 전완부 2도 화상 등"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="form-section space-y-5">
-                            <div class="text-lg font-bold text-lafd-navy dark:text-amber-500 flex items-center gap-2">
-                                4. 처치 내용
+                            <div class="field-group">
+                                <label class="section-title required">의식수준</label>
+                                <div class="options">
+                                    <div class="option-btn" data-group="conscious" data-value="A">A</div>
+                                    <div class="option-btn" data-group="conscious" data-value="V">V</div>
+                                    <div class="option-btn" data-group="conscious" data-value="P">P</div>
+                                    <div class="option-btn" data-group="conscious" data-value="U">U</div>
+                                </div>
                             </div>
-                            <div>
-                                <label for="treatment" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">시행 처치</label>
-                                <textarea id="treatment" name="treatment" class="form-textarea" placeholder="예: ABC 평가, SpO2 모니터링, Ice pack 적용, Burn dressing 적용, 상지 고정 등"></textarea>
-                            </div>
-                            <div class="pt-2">
-                                <label for="meds" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">투약 내역 (있을 경우)</label>
-                                <textarea id="meds" name="meds" class="form-textarea" placeholder="예: PO ASA 325mg, SL Nitro 0.4mg ×1, IV NS KVO 등 / 없으면 N/A"></textarea>
-                            </div>
-                            <div class="pt-2">
-                                <label for="transport" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">이송 여부 / 목적지</label>
-                                <input type="text" id="transport" name="transport" class="form-input" placeholder="예: ALS 이송, Pillbox Hill MC / Refusal 및 자필서명 등" />
-                            </div>
-                            <div class="pt-2">
-                                <label for="outcome" class="block text-sm text-slate-700 dark:text-slate-400 mb-2 font-bold">최종 상태 / 인계</label>
-                                <textarea id="outcome" name="outcome" class="form-textarea" placeholder="예: 상태 안정, ER 팀에 구두/서면 인계, 현장 정리 후 복귀 등"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="flex justify-between items-center pt-5 border-t border-slate-200 dark:border-slate-800 mt-8">
-                            <button type="button" id="clearBtn" class="btn-secondary">
-                                🧹 전체 초기화
-                            </button>
-                            <button type="button" id="generateBtn" class="btn-primary">
-                                🚨 구급출동 보고서 생성 및 복사
-                            </button>
-                        </div>
-
-                        <div class="relative mt-8">
-                            <div class="flex justify-between items-end mb-3">
-                                <span class="text-base font-bold text-slate-700 dark:text-slate-400">생성된 기록지 로그</span>
-                                <button type="button" data-copy="output" class="flex items-center gap-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white text-sm py-2 px-4 rounded-xl border border-slate-300 dark:border-slate-600 transition-colors shadow-sm">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                                    수동 복사
-                                </button>
+                            <div class="field-group">
+                                <label class="section-title required">생체징후</label>
+                                <div class="vitals-grid">
+                                    <div>
+                                        <label>혈압</label>
+                                        <div class="options">
+                                            <div class="option-btn" data-group="bp-status">정상</div>
+                                            <div class="option-btn" data-group="bp-status">고혈압</div>
+                                            <div class="option-btn" data-group="bp-status">저혈압</div>
+                                            <div class="option-btn" data-group="bp-status">측정불가</div>
+                                            <div class="option-btn" data-group="bp-status">미측정</div>
+                                        </div>
+                                        <input type="text" id="bp-detail" placeholder="상세 (예: 120/80)" class="other-input" style="display: none;">
+                                    </div>
+                                    <div>
+                                        <label>맥박</label>
+                                        <div class="options">
+                                            <div class="option-btn" data-group="pulse-status">정상</div>
+                                            <div class="option-btn" data-group="pulse-status">빈맥</div>
+                                            <div class="option-btn" data-group="pulse-status">서맥</div>
+                                            <div class="option-btn" data-group="pulse-status">맥박없음</div>
+                                            <div class="option-btn" data-group="pulse-status">미측정</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>호흡수</label>
+                                        <div class="options">
+                                            <div class="option-btn" data-group="resp-status">정상</div>
+                                            <div class="option-btn" data-group="resp-status">빠른호흡</div>
+                                            <div class="option-btn" data-group="resp-status">느린호흡</div>
+                                            <div class="option-btn" data-group="resp-status">호흡정지</div>
+                                            <div class="option-btn" data-group="resp-status">미측정</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>체온</label>
+                                        <div class="options">
+                                            <div class="option-btn" data-group="temp-status">정상</div>
+                                            <div class="option-btn" data-group="temp-status">고체온</div>
+                                            <div class="option-btn" data-group="temp-status">저체온</div>
+                                            <div class="option-btn" data-group="temp-status">측정불가</div>
+                                            <div class="option-btn" data-group="temp-status">미측정</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>산소포화도</label>
+                                        <div class="options">
+                                            <div class="option-btn" data-group="spo2-status">정상</div>
+                                            <div class="option-btn" data-group="spo2-status">저산소증</div>
+                                            <div class="option-btn" data-group="spo2-status">측정불가</div>
+                                            <div class="option-btn" data-group="spo2-status">미측정</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <textarea id="output" readonly class="w-full bg-slate-50 dark:bg-[#060a12] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-sm font-mono text-emerald-600 dark:text-emerald-400 h-56 outline-none resize-none shadow-inner" placeholder="[구급출동 보고서가 여기 생성됩니다]"></textarea>
+
+                            <div class="field-group" id="symptoms-section">
+                                <label class="section-title">환자 증상</label>
+                                
+                                <div style="margin-bottom: 25px;">
+                                    <strong>1) 전신</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="sym-general">고열</div>
+                                        <div class="option-btn" data-group="sym-general">오한</div>
+                                        <div class="option-btn" data-group="sym-general">마비</div>
+                                        <div class="option-btn" data-group="sym-general">청색증</div>
+                                        <div class="option-btn" data-group="sym-general">아나필락시스</div>
+                                        <div class="option-btn other-btn" data-group="sym-general" data-other="other-general">기타</div>
+                                    </div>
+                                    <textarea id="other-general" class="other-input" style="display:none;" placeholder="기타 증상"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>2) 신경계</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="sym-neuro">의식소실</div>
+                                        <div class="option-btn" data-group="sym-neuro">경련/발작</div>
+                                        <div class="option-btn" data-group="sym-neuro">두통</div>
+                                        <div class="option-btn" data-group="sym-neuro">감각이상</div>
+                                        <div class="option-btn" data-group="sym-neuro">어지러움</div>
+                                        <div class="option-btn other-btn" data-group="sym-neuro" data-other="other-neuro">기타</div>
+                                    </div>
+                                    <textarea id="other-neuro" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>3) 안면</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="sym-face">안면통증</div>
+                                        <div class="option-btn" data-group="sym-face">이명</div>
+                                        <div class="option-btn" data-group="sym-face">목통증</div>
+                                        <div class="option-btn" data-group="sym-face">코피</div>
+                                        <div class="option-btn" data-group="sym-face">이물감</div>
+                                        <div class="option-btn other-btn" data-group="sym-face" data-other="other-face">기타</div>
+                                    </div>
+                                    <textarea id="other-face" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>4) 호흡기계</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="sym-resp">호흡곤란</div>
+                                        <div class="option-btn" data-group="sym-resp">호흡정지</div>
+                                        <div class="option-btn" data-group="sym-resp">객혈</div>
+                                        <div class="option-btn" data-group="sym-resp">기침</div>
+                                        <div class="option-btn" data-group="sym-resp">알레르기반응</div>
+                                        <div class="option-btn other-btn" data-group="sym-resp" data-other="other-resp">기타</div>
+                                    </div>
+                                    <textarea id="other-resp" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>5) 심혈관계</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="sym-cardio">심정지</div>
+                                        <div class="option-btn" data-group="sym-cardio">가슴불편감(흉통포함)</div>
+                                        <div class="option-btn" data-group="sym-cardio">두근거림</div>
+                                        <div class="option-btn" data-group="sym-cardio">실신</div>
+                                        <div class="option-btn other-btn" data-group="sym-cardio" data-other="other-cardio">기타</div>
+                                    </div>
+                                    <textarea id="other-cardio" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>6) 소화기계</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="sym-digest">복통</div>
+                                        <div class="option-btn" data-group="sym-digest">오심</div>
+                                        <div class="option-btn" data-group="sym-digest">구토</div>
+                                        <div class="option-btn" data-group="sym-digest">설사</div>
+                                        <div class="option-btn" data-group="sym-digest">변비</div>
+                                        <div class="option-btn other-btn" data-group="sym-digest" data-other="other-digest">기타</div>
+                                    </div>
+                                    <textarea id="other-digest" class="other-input" style="display:none;" placeholder="기타"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>7) 외상</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="trauma">골절</div>
+                                        <div class="option-btn" data-group="trauma">탈구</div>
+                                        <div class="option-btn" data-group="trauma">뼈</div>
+                                        <div class="option-btn" data-group="trauma">자상</div>
+                                        <div class="option-btn" data-group="trauma">총상</div>
+                                        <div class="option-btn" data-group="trauma">찰과상</div>
+                                        <div class="option-btn" data-group="trauma">타박상</div>
+                                        <div class="option-btn" data-group="trauma">절단</div>
+                                        <div class="option-btn" data-group="trauma">압궤손상</div>
+                                        <div class="option-btn" data-group="trauma">화상</div>
+                                        <div class="option-btn other-btn" data-group="trauma" data-other="other-trauma">기타</div>
+                                    </div>
+                                    <textarea id="other-trauma" class="other-input" style="display:none;" placeholder="기타 외상"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field-group">
+                                <label class="section-title">처치내용</label>
+                                
+                                <div style="margin-bottom: 25px;">
+                                    <strong>1) 기도</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="airway">없음</div>
+                                        <div class="option-btn" data-group="airway">기도기</div>
+                                        <div class="option-btn" data-group="airway">LMA</div>
+                                        <div class="option-btn" data-group="airway">기관내삽관</div>
+                                        <div class="option-btn" data-group="airway">기관절개</div>
+                                        <div class="option-btn other-btn" data-group="airway" data-other="other-airway">기타</div>
+                                    </div>
+                                    <textarea id="other-airway" class="other-input" style="display:none;" placeholder="기타 기도 처치"></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>2) 호흡</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="breath">없음</div>
+                                        <div class="option-btn" data-group="breath">BVM</div>
+                                        <div class="option-btn" data-group="breath">인공호흡기</div>
+                                        <div class="option-btn" data-group="breath">비관</div>
+                                        <div class="option-btn" data-group="breath">안면마스크</div>
+                                        <div class="option-btn other-btn" data-group="breath" data-other="other-breath">기타</div>
+                                    </div>
+                                    <input type="text" id="oxygen" placeholder="Ex) 3L/min 산소투여" style="margin-top: 8px;">
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>3) 순환</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="circ">없음</div>
+                                        <div class="option-btn" data-group="circ">심폐소생술</div>
+                                        <div class="option-btn" id="monitoring-btn" data-group="circ">모니터링</div>
+                                        <div class="option-btn" id="ecg-btn" data-group="circ">심전도</div>
+                                        <div class="option-btn" data-group="circ">정맥로확보</div>
+                                        <div class="option-btn" data-group="circ">정맥혈채혈</div>
+                                    </div>
+                                    
+                                    <div id="monitoring-options" class="options" style="display: none; margin-top: 8px; padding-left: 20px; border-left: 3px solid #60a5fa;">
+                                        <div class="option-btn" data-group="circ-sub">혈압</div>
+                                        <div class="option-btn" data-group="circ-sub">맥박</div>
+                                        <div class="option-btn" data-group="circ-sub">산소포화도</div>
+                                    </div>
+                                    
+                                    <div id="ecg-options" class="options" style="display: none; margin-top: 8px; padding-left: 20px; border-left: 3px solid #60a5fa;">
+                                        <div class="option-btn" data-group="circ-sub">3유도심전도</div>
+                                        <div class="option-btn" data-group="circ-sub">12유도심전도</div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 25px;">
+                                    <strong>4) 약품</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="med">없음</div>
+                                        <div class="option-btn" data-group="med">생리식염수</div>
+                                        <div class="option-btn" data-group="med">에피네프린</div>
+                                        <div class="option-btn" data-group="med">리도카인</div>
+                                        <div class="option-btn other-btn" data-group="med" data-other="other-med">기타</div>
+                                    </div>
+                                    <textarea id="other-med" class="other-input" style="display:none;" placeholder="기타 약품 (용량, 방법 등)"></textarea>
+                                </div>
+
+                                <div>
+                                    <strong>5) 고정</strong>
+                                    <div class="options">
+                                        <div class="option-btn" data-group="fix">없음</div>
+                                        <div class="option-btn" data-group="fix">경추</div>
+                                        <div class="option-btn" data-group="fix">척추</div>
+                                        <div class="option-btn" data-group="fix">상지</div>
+                                        <div class="option-btn" data-group="fix">하지</div>
+                                        <div class="option-btn other-btn" data-group="fix" data-other="other-fix">기타</div>
+                                    </div>
+                                    <textarea id="other-fix" class="other-input" style="display:none;" placeholder="기타 고정"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field-group">
+                                <label class="section-title required">최종상태</label>
+                                <div class="options">
+                                    <div class="option-btn" data-group="final-status">귀가조치</div>
+                                    <div class="option-btn" data-group="final-status">현장사망</div>
+                                    <div class="option-btn" data-group="final-status">응급실이송</div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                        
+                        <div style="padding: 0 35px 40px;">
+                            <button onclick="copyToClipboardPH()" class="copy-btn">📋 전체 내용 복사 (Discord 업로드용)</button>
+                        </div>
+                        
+                        <div class="ph-footer">
+                            Los Santos Fire Department • RP Record System • Made for immersive roleplay
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -762,18 +1120,16 @@
 
     <script>
     const ManualManager = {
-        fetchedData: null,    // manuals.json에서 불러온 원본 데이터를 보관할 캐시
-        renderedCache: {},    // 이미 렌더링을 끝마친 탭을 기록하여 불필요한 DOM 연산 방지
-        isFetching: false,    // 동시 다발적인 중복 Fetch 요청 방지용 플래그
+        fetchedData: null,
+        renderedCache: {},
+        isFetching: false,
 
-        // 비동기로 JSON 파일 로드 (최초 1회만 실행됨)
         async fetchData() {
             if (this.fetchedData) return this.fetchedData; 
             if (this.isFetching) return null; 
 
             this.isFetching = true;
             try {
-                // 동일한 폴더에 위치한 manuals.json 파일을 읽어옵니다.
                 const response = await fetch('manuals.json');
                 if (!response.ok) throw new Error('네트워크 응답 에러');
                 this.fetchedData = await response.json();
@@ -787,18 +1143,14 @@
             }
         },
 
-        // 탭이 선택되었을 때 호출되는 렌더링 함수
         async renderSection(tabId) {
-            // [캐시 히트] 이미 HTML 구조가 완성(렌더링)된 탭이라면 즉시 종료하여 성능 최적화
             if (this.renderedCache[tabId]) return;
 
             const container = document.getElementById(`manual-container-${tabId}`);
-            if (!container) return; // 렌더링할 타겟이 없으면 종료
+            if (!container) return;
 
-            // 로딩 UI 표시 (선택사항)
             container.innerHTML = '<p class="text-slate-500 text-sm animate-pulse">데이터를 읽어오는 중입니다...</p>';
 
-            // [캐시 미스] 데이터 확보 및 렌더링
             const data = await this.fetchData();
             if (!data || !data[tabId]) {
                 container.innerHTML = '<p class="text-red-500 text-sm">해당 항목의 매뉴얼 데이터가 없습니다.</p>';
@@ -820,7 +1172,7 @@
             });
             
             container.innerHTML = htmlString;
-            this.renderedCache[tabId] = true; // 렌더링 완료 상태로 캐시 업데이트
+            this.renderedCache[tabId] = true;
         }
     };
 
@@ -892,7 +1244,6 @@
         }
     }
 
-    // 변경된 switchContentTab (동기에서 비동기 캐싱 호출로 변경)
     function switchContentTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
         
@@ -904,11 +1255,9 @@
         const activeBtn = document.querySelector(`.sub-tab[data-tab="${tabId}"]`);
         if(activeBtn) activeBtn.classList.add('active');
 
-        // 매뉴얼 매니저를 통한 스마트 탭 전환 처리 (fetch & 캐싱 렌더링 호출)
         ManualManager.renderSection(tabId);
     }
 
-    // 통합 이벤트 위임 처리 (기존 구조 완벽 유지)
     document.body.addEventListener('click', (e) => {
         const mainTabBtn = e.target.closest('.main-tab');
         if (mainTabBtn) {
@@ -952,14 +1301,6 @@
         });
     }
 
-    function setCurrentDateTimeMedical() {
-        const now = new Date();
-        const localISOTime = new Date(now.getTimezoneOffset() * -60000 + now.getTime()).toISOString();
-        const formatted = localISOTime.slice(0, 10) + ' ' + localISOTime.slice(11, 16);
-        const el = document.getElementById("datetime");
-        if(el) el.value = formatted;
-    }
-
     function setCurrentDateTimeFire() {
         const now = new Date();
         const localISOTime = new Date(now.getTimezoneOffset() * -60000 + now.getTime()).toISOString();
@@ -975,7 +1316,8 @@
         let firstInvalidField = null;
         
         fields.forEach(el => {
-            if (el.id === 'output' || el.id === 'output_fire') return;
+            if (el.id === 'output' || el.id === 'output_fire' || el.id === 'bp-detail') return;
+            if (el.classList.contains('other-input') && el.style.display === 'none') return;
             
             if (!el.value.trim()) {
                 el.classList.add('input-error');
@@ -996,18 +1338,159 @@
         const form = document.getElementById(formId);
         form.reset();
         form.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
-        
-        if(formId === 'medical-form') setCurrentDateTimeMedical();
-        if(formId === 'fire-form') setCurrentDateTimeFire();
-        
+        if (formId === 'fire-form') setCurrentDateTimeFire();
         document.getElementById(outputId).value = "";
         showToast('입력 폼이 초기화되었습니다.');
     }
 
+    /* =========================================
+       PreHospital Case Report 자바스크립트 영역
+       ========================================= */
+    function getFormDataPH() {
+        let text = "=== LSFD 출동 및 처치기록지 ===\n\n";
+        
+        text += `신고접수: ${document.getElementById('report-time').value || '-'}\n`;
+        text += `일시: ${document.getElementById('dispatch-time').value || '-'}\n`;
+        text += `현장위치: ${document.getElementById('location').value || '-'}\n`;
+        text += `출동인원: ${document.getElementById('crew').value || '-'}\n`;
+        text += `운용차량: ${document.getElementById('vehicle').value || '-'}\n\n`;
+        
+        const nameInput = document.getElementById('patient-name').value.trim() || '-';
+        const nameConfirmBtn = document.querySelector('#prehospital-scope .option-btn.active[data-group="name-confirm"]');
+        const patientName = nameConfirmBtn ? '확인불가' : nameInput;
+
+        const ageInput = document.getElementById('patient-age').value.trim() || '-';
+        const ageConfirmBtn = document.querySelector('#prehospital-scope .option-btn.active[data-group="age-confirm"]');
+        const patientAge = ageConfirmBtn ? '확인불가' : ageInput;
+
+        const genderBtn = document.querySelector('#prehospital-scope .option-btn.active[data-group="gender"]');
+        const patientGender = genderBtn ? genderBtn.textContent : '-';
+        
+        text += `환자정보:\n`;
+        text += `- 이름: ${patientName}\n`;
+        text += `- 나이: ${patientAge}\n`;
+        text += `- 성별: ${patientGender}\n\n`;
+        
+        text += `주호소: ${document.getElementById('chief-complaint').value || '-'}\n\n`;
+        
+        const cons = document.querySelector('#prehospital-scope .option-btn.active[data-group="conscious"]');
+        text += `의식수준: ${cons ? cons.textContent : '미입력'}\n\n`;
+        
+        text += "=== 생체징후 ===\n";
+        ['bp-status', 'pulse-status', 'resp-status', 'temp-status', 'spo2-status'].forEach(g => {
+            const active = document.querySelector(`#prehospital-scope .option-btn.active[data-group="${g}"]`);
+            const label = g.includes('bp') ? '혈압' : g.includes('pulse') ? '맥박' : g.includes('resp') ? '호흡수' : g.includes('temp') ? '체온' : '산소포화도';
+            text += `${label}: ${active ? active.textContent : '미입력'}\n`;
+        });
+        const bpDetail = document.getElementById('bp-detail').value;
+        if (bpDetail) text += `혈압 상세: ${bpDetail}\n`;
+        text += "\n";
+        
+        text += "=== 환자 증상 ===\n";
+        let hasAnySymptom = false;
+        
+        const symptomSections = document.querySelectorAll('#symptoms-section strong');
+        symptomSections.forEach(section => {
+            const parent = section.parentElement;
+            const actives = parent.querySelectorAll('.option-btn.active');
+            let sectionHasContent = false;
+            
+            text += `\n${section.textContent.trim()}\n`;
+            
+            actives.forEach(a => {
+                if (!a.classList.contains('other-btn')) {
+                    text += `- ${a.textContent}\n`;
+                    hasAnySymptom = true;
+                    sectionHasContent = true;
+                }
+            });
+            
+            const otherBtn = parent.querySelector('.option-btn.other-btn.active');
+            if (otherBtn) {
+                const otherId = otherBtn.getAttribute('data-other');
+                const otherVal = document.getElementById(otherId).value.trim();
+                if (otherVal) {
+                    text += `- 기타: ${otherVal}\n`;
+                    hasAnySymptom = true;
+                    sectionHasContent = true;
+                }
+            }
+        });
+        
+        if (!hasAnySymptom) {
+            text += "\n없음\n";
+        }
+        text += "\n";
+        
+        text += "=== 처치내용 ===\n";
+        const treatmentGroups = ['airway', 'breath', 'circ', 'med', 'fix'];
+        treatmentGroups.forEach(g => {
+            const actives = document.querySelectorAll(`#prehospital-scope .option-btn.active[data-group="${g}"]`);
+            if (actives.length > 0) {
+                const label = g === 'airway' ? '기도' : g === 'breath' ? '호흡' : g === 'circ' ? '순환' : g === 'med' ? '약품' : '고정';
+                let items = [];
+                actives.forEach(a => {
+                    if (!a.id || (a.id !== 'monitoring-btn' && a.id !== 'ecg-btn')) {
+                        items.push(a.textContent);
+                    }
+                });
+                if (items.length > 0) text += `${label}: ${items.join(', ')}\n`;
+            }
+        });
+        
+        const subActives = document.querySelectorAll('#prehospital-scope .option-btn.active[data-group="circ-sub"]');
+        if (subActives.length > 0) {
+            let subs = [];
+            subActives.forEach(s => subs.push(s.textContent));
+            text += `  └ 모니터링/심전도: ${subs.join(', ')}\n`;
+        }
+        
+        const oxygenVal = document.getElementById('oxygen').value.trim();
+        if (oxygenVal) text += `산소투여: ${oxygenVal}\n`;
+        
+        const medOther = document.getElementById('other-med').value.trim();
+        if (medOther) text += `기타 약품: ${medOther}\n`;
+        
+        text += "\n=== 최종상태 ===\n";
+        const final = document.querySelector('#prehospital-scope .option-btn.active[data-group="final-status"]');
+        text += `${final ? final.textContent : '미입력'}\n`;
+        
+        return text;
+    }
+    
+    function copyToClipboardPH() {
+        const content = getFormDataPH();
+        navigator.clipboard.writeText(content).then(() => {
+            const btn = document.querySelector('#prehospital-scope .copy-btn');
+            const original = btn.textContent;
+            btn.textContent = '✅ 복사 완료! Discord에 붙여넣으세요';
+            setTimeout(() => btn.textContent = original, 3000);
+        }).catch(() => alert('복사 실패. 수동으로 복사해주세요.'));
+    }
+
+    function updateKSTClock(){
+        const now = new Date();
+        const kst = new Date(now.toLocaleString('en-US', {timeZone:'Asia/Seoul'}));
+        const y = kst.getFullYear();
+        const m = String(kst.getMonth()+1).padStart(2,'0');
+        const d = String(kst.getDate()).padStart(2,'0');
+        const h = String(kst.getHours()).padStart(2,'0');
+        const mi = String(kst.getMinutes()).padStart(2,'0');
+        const s = String(kst.getSeconds()).padStart(2,'0');
+
+        const el = document.getElementById('kst-clock');
+        if(el){
+            el.textContent = `${y}-${m}-${d} ${h}:${mi}:${s}`;
+        }
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.ctrlKey && e.key === 'Enter') copyToClipboardPH();
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
-        // 초기 시간 설정
-        setCurrentDateTimeMedical();
-        setCurrentDateTimeFire();
+        // 기존 폼 로직 바인딩 
+        if(typeof setCurrentDateTimeFire === 'function') setCurrentDateTimeFire();
 
         document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
             input.addEventListener('input', function() {
@@ -1017,38 +1500,77 @@
             });
         });
 
-        document.getElementById("clearBtn").addEventListener("click", () => clearFormHandler('medical-form', 'output'));
-        document.getElementById("clearFireBtn").addEventListener("click", () => clearFormHandler('fire-form', 'output_fire'));
+        // Fire Form Event Listeners (안전한 바인딩)
+        const clearFireBtn = document.getElementById("clearFireBtn");
+        if (clearFireBtn) {
+            clearFireBtn.addEventListener("click", () => clearFormHandler('fire-form', 'output_fire'));
+        }
 
-        document.getElementById("generateBtn").addEventListener("click", () => {
-            if (!validateForm('medical-form')) {
-                showToast('모든 항목을 입력해주세요. (빈칸은 N/A 입력)', 'error');
-                return;
-            }
-            const formData = new FormData(document.getElementById('medical-form'));
-            const data = Object.fromEntries(formData.entries());
-            const getVal = (key) => data[key] && data[key].trim() !== "" ? data[key].trim() : "N/A";
-            const sexStr = data['sex'] ? data['sex'] : "N/A";
+        const generateFireBtn = document.getElementById("generateFireBtn");
+        if (generateFireBtn) {
+            generateFireBtn.addEventListener("click", () => {
+                if (!validateForm('fire-form')) {
+                    showToast('모든 항목을 입력해주세요. (빈칸은 N/A 입력)', 'error');
+                    return;
+                }
+                const formData = new FormData(document.getElementById('fire-form'));
+                const data = Object.fromEntries(formData.entries());
+                const getVal = (key) => data[key] && data[key].trim() !== "" ? data[key].trim() : "N/A";
+                
+                const resultText = `**[FD화재출동보고서]**\n\n신고접수: ${getVal('incidentId_fire')} | 출동차량: ${getVal('unit_fire')}\n일시: ${getVal('datetime_fire')} | 장소: ${getVal('location_fire')}\n현장 지휘관: ${getVal('commander_fire')}\n출동 인원: ${getVal('crew_fire')}\n\n화재 유형: ${getVal('fireType_fire')} | 대상물/구조: ${getVal('buildingType_fire')}\n화재 규모: ${getVal('fireLevel_fire')}\n연기/화염 상태: ${getVal('smokeFlame_fire')}\n도착 시 상태: ${getVal('arrivalStatus_fire')}\n\n인명 구조 여부: ${getVal('rescue_fire')}\n대피 조치: ${getVal('evacuation_fire')}\n진압 활동: ${getVal('suppression_fire')}\n추가 지원 요청: ${getVal('support_fire')}\n\n부상자: ${getVal('injuries_fire')}\n재산 피해: ${getVal('propertyDamage_fire')}\n추정 원인: ${getVal('cause_fire')}\n잔불 정리/환기: ${getVal('overhaul_fire')}\n현장 인계/통제: ${getVal('handover_fire')}\n결과: ${getVal('outcome_fire')}`;
 
-            const resultText = `**[FD처치기록지]**\n\n신고접수: ${getVal('incidentId')} | 출동차량: ${getVal('unit')}\n일시: ${getVal('datetime')} | 장소: ${getVal('location')}\n주 처치자: ${getVal('lead')}\n보조 처치자: ${getVal('partner')}\n\n환자성명: ${data['patientName'].trim() || "Unknown"} | Age: ${getVal('age')} | 성별: ${sexStr}\n의식수준: ${getVal('conscious')}\n\n주 호소: ${getVal('chiefComplaint')}\n활력징후 - 혈압: ${getVal('bp')}, 심박수: ${getVal('hr')}, 호흡수: ${getVal('rr')}, 산소포화도: ${getVal('spo2')}, 체온: ${getVal('temp')}, 통증점수: ${getVal('pain')}\n도착 시 상태: ${getVal('assessment')}\n\n처치내용: ${getVal('treatment')}\n사용약물: ${getVal('meds')}\n이송 목적지: ${getVal('transport')}\n결과: ${getVal('outcome')}`;
+                document.getElementById("output_fire").value = resultText;
+                copyTextToClipboard("output_fire", true);
+            });
+        }
 
-            document.getElementById("output").value = resultText;
-            copyTextToClipboard("output", true);
-        });
+        // PreHospital Case Report 전용 스크립트 실행
+        updateKSTClock();
+        setInterval(updateKSTClock,1000);
 
-        document.getElementById("generateFireBtn").addEventListener("click", () => {
-            if (!validateForm('fire-form')) {
-                showToast('모든 항목을 입력해주세요. (빈칸은 N/A 입력)', 'error');
-                return;
-            }
-            const formData = new FormData(document.getElementById('fire-form'));
-            const data = Object.fromEntries(formData.entries());
-            const getVal = (key) => data[key] && data[key].trim() !== "" ? data[key].trim() : "N/A";
-            
-            const resultText = `**[FD화재출동보고서]**\n\n신고접수: ${getVal('incidentId_fire')} | 출동차량: ${getVal('unit_fire')}\n일시: ${getVal('datetime_fire')} | 장소: ${getVal('location_fire')}\n현장 지휘관: ${getVal('commander_fire')}\n출동 인원: ${getVal('crew_fire')}\n\n화재 유형: ${getVal('fireType_fire')} | 대상물/구조: ${getVal('buildingType_fire')}\n화재 규모: ${getVal('fireLevel_fire')}\n연기/화염 상태: ${getVal('smokeFlame_fire')}\n도착 시 상태: ${getVal('arrivalStatus_fire')}\n\n인명 구조 여부: ${getVal('rescue_fire')}\n대피 조치: ${getVal('evacuation_fire')}\n진압 활동: ${getVal('suppression_fire')}\n추가 지원 요청: ${getVal('support_fire')}\n\n부상자: ${getVal('injuries_fire')}\n재산 피해: ${getVal('propertyDamage_fire')}\n추정 원인: ${getVal('cause_fire')}\n잔불 정리/환기: ${getVal('overhaul_fire')}\n현장 인계/통제: ${getVal('handover_fire')}\n결과: ${getVal('outcome_fire')}`;
+        document.querySelectorAll('#prehospital-scope .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const group = this.getAttribute('data-group');
+                const isOther = this.classList.contains('other-btn');
+                
+                if (group && !['sym-general','sym-neuro','sym-face','sym-resp','sym-cardio','sym-digest','trauma','airway','breath','circ','med','fix','circ-sub'].includes(group)) {
+                    const siblings = document.querySelectorAll(`#prehospital-scope [data-group="${group}"]`);
+                    const wasActive = this.classList.contains('active');
+                    
+                    siblings.forEach(b => b.classList.remove('active'));
+                    
+                    if (!wasActive) {
+                        this.classList.add('active');
+                    }
+                } else {
+                    this.classList.toggle('active');
+                }
+                
+                if (isOther) {
+                    const otherId = this.getAttribute('data-other');
+                    const input = document.getElementById(otherId);
+                    if (input) {
+                        const isActive = this.classList.contains('active');
+                        input.style.display = isActive ? 'block' : 'none';
+                    }
+                } else if (group) {
+                    const otherBtns = document.querySelectorAll(`#prehospital-scope [data-group="${group}"].other-btn`);
+                    otherBtns.forEach(ob => {
+                        const oid = ob.getAttribute('data-other');
+                        const inp = document.getElementById(oid);
+                        if (inp) inp.style.display = 'none';
+                    });
+                }
 
-            document.getElementById("output_fire").value = resultText;
-            copyTextToClipboard("output_fire", true);
+                if (this.id === 'monitoring-btn') {
+                    const monOpts = document.getElementById('monitoring-options');
+                    monOpts.style.display = this.classList.contains('active') ? 'flex' : 'none';
+                }
+                if (this.id === 'ecg-btn') {
+                    const ecgOpts = document.getElementById('ecg-options');
+                    ecgOpts.style.display = this.classList.contains('active') ? 'flex' : 'none';
+                }
+            });
         });
     });
     </script>
